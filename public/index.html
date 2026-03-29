@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FestNexus — Delhi's College Fest & Sponsor Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<body>
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="goHome()">
+    <div class="logo-dot"></div>
+    FestNexus
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Colleges</a></li>
+    <li><a href="#">Sponsors</a></li>
+    <li><a href="#">Upcoming</a></li>
+    <li><a href="#">For companies</a></li>
+    <li><a class="nav-cta" href="#">List your fest →</a></li>
+  </ul>
+</nav>
+
+<!-- HOME VIEW -->
+<div class="home-view" id="homeView">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><span></span> Delhi NCR's fest intelligence platform</div>
+    <h1>Where sponsors<br>meet <em>great fests.</em></h1>
+    <p class="hero-sub">Every college fest, every sponsor, every year — organized so you never cold-email blindly again.</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Colleges</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Fests tracked</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Sponsorships logged</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Upcoming events</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-bar">
+    <div class="search-input-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-input" type="text" placeholder="Search colleges, fests, sponsors..." id="searchInput" oninput="filterCards()">
+    </div>
+  </div>
+
+  <!-- COLLEGE GRID HEADER -->
+  <div class="section-header">
+    <div class="section-title">Colleges</div>
+    <div class="section-filter">
+      <button class="filter-btn active" onclick="filterType('all', this)">All</button>
+      <button class="filter-btn" onclick="filterType('iit', this)">IITs</button>
+      <button class="filter-btn" onclick="filterType('du', this)">DU</button>
+      <button class="filter-btn" onclick="filterType('state', this)">State</button>
+      <button class="filter-btn" onclick="filterType('iiit', this)">IIIT</button>
+    </div>
+  </div>
+
+  <!-- COLLEGE GRID -->
+  <div class="colleges-grid" id="collegesGrid">
+    <!-- cards injected by JS -->
+  </div>
+
+  <!-- UPCOMING EVENTS -->
+  <div class="upcoming-section">
+    <div class="upcoming-header">
+      <div class="upcoming-title">Upcoming fests</div>
+      <a class="view-all">View all →</a>
+    </div>
+    <div class="upcoming-grid" id="upcomingGrid">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+  <!-- CONNECT CTA -->
+  <div class="connect-section">
+    <div class="connect-box">
+      <div class="connect-title">Looking to sponsor?</div>
+      <p class="connect-sub">Get matched with the right fests based on your industry, budget, and audience.<br>Direct connection to event heads — no middlemen.</p>
+      <div class="connect-btns">
+        <button class="btn-primary">Find fests to sponsor →</button>
+        <button class="btn-secondary">Browse all opportunities</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COLLEGE DETAIL VIEW -->
+<div class="detail-view" id="detailView">
+
+  <div class="breadcrumb" onclick="goHome()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+    Back to all colleges
+  </div>
+
+  <div class="detail-hero" id="detailHero">
+    <!-- injected -->
+  </div>
+
+  <div class="fest-tabs" id="festTabs">
+    <!-- injected -->
+  </div>
+
+  <div class="fest-list" id="festList">
+    <!-- injected -->
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</head>
