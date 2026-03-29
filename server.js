@@ -17,5 +17,5 @@ app.use('/api/fests',    require('./routes/festroutes'))
 app.use('/api/sponsors', require('./routes/sponsorsroutes'))
 app.use('/api/upcoming', require('./routes/upcomingroutes'))
 
-const PORT = process.env.PORT || 8002
+const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`))

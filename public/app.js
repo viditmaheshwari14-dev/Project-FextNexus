@@ -1,7 +1,11 @@
 // ============================================================
+//  CONFIG
+// ============================================================
+const API = "https://project-fextnexus.onrender.com"
+
+// ============================================================
 //  DATA
 // ============================================================
-const API = "https://project-fextnexus.onrender.com";
 const COLLEGES = [
   { id:'dtu',      name:'Delhi Technological University',         short:'DTU',   type:'state', typeName:'State Univ.', location:'Rohini, Delhi',       color:'#6c63ff', glow:'rgba(108,99,255,0.12)',  fests:14, sponsors:85,  years:5, established:1941, students:'10,000+', fesTypes:['cultural','tech','sports'] },
   { id:'nsut',     name:'Netaji Subhas University of Technology', short:'NSUT',  type:'state', typeName:'State Univ.', location:'Dwarka, Delhi',        color:'#ff6584', glow:'rgba(255,101,132,0.12)', fests:10, sponsors:62,  years:4, established:1983, students:'7,500+',  fesTypes:['cultural','tech','sports'] },
@@ -13,6 +17,10 @@ const COLLEGES = [
   { id:'iitk',     name:'IIT Kanpur',                             short:'IITK',  type:'iit',   typeName:'IIT',         location:'Kanpur, UP',             color:'#43e8c0', glow:'rgba(67,232,192,0.12)',  fests:16, sponsors:110, years:5, established:1959, students:'9,000+',  fesTypes:['cultural','tech','sports'] },
   { id:'lsr',      name:'Lady Shri Ram College',                  short:'LSR',   type:'du',    typeName:'DU College',  location:'Lajpat Nagar, Delhi',   color:'#ff6584', glow:'rgba(255,101,132,0.12)', fests:7,  sponsors:40,  years:4, established:1956, students:'2,800+',  fesTypes:['cultural','sports'] },
 ]
+// ============================================================
+//  DATA
+// ============================================================
+
 
 const FEST_DATA = {
 
@@ -810,6 +818,296 @@ const TYPE_BADGE = {
 
 let currentFilter = 'all'
 
+// ============================================================
+//  MODAL STYLES — injected into page head
+// ============================================================
+
+;(function injectStyles() {
+  const s = document.createElement('style')
+  s.textContent = `
+    .fn-overlay {
+      display:none; position:fixed; inset:0; z-index:999;
+      background:rgba(0,0,0,0.7); backdrop-filter:blur(4px);
+      align-items:center; justify-content:center;
+    }
+    .fn-overlay.open { display:flex; }
+    .fn-modal {
+      background:#111118; border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px; padding:36px; width:100%; max-width:520px;
+      max-height:90vh; overflow-y:auto; position:relative;
+      animation:modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .fn-modal h2 { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; letter-spacing:-0.5px; margin-bottom:6px; color:#f0eff8; }
+    .fn-modal p  { font-size:13px; color:#7c7b8a; margin-bottom:24px; line-height:1.6; }
+    .fn-modal label { display:block; font-size:12px; color:#7c7b8a; margin-bottom:6px; }
+    .fn-modal input, .fn-modal select, .fn-modal textarea {
+      width:100%; background:#1a1a24; border:1px solid rgba(255,255,255,0.08);
+      border-radius:10px; padding:10px 14px; color:#f0eff8;
+      font-family:'DM Sans',sans-serif; font-size:14px;
+      outline:none; margin-bottom:16px; transition:border-color 0.2s;
+      box-sizing:border-box;
+    }
+    .fn-modal input:focus, .fn-modal select:focus, .fn-modal textarea:focus { border-color:rgba(255,255,255,0.2); }
+    .fn-modal select option { background:#1a1a24; }
+    .fn-modal textarea { resize:vertical; min-height:80px; }
+    .fn-modal .row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .fn-btn-primary {
+      width:100%; padding:12px; background:#6c63ff; color:#fff;
+      border:none; border-radius:10px; font-family:'DM Sans',sans-serif;
+      font-size:14px; font-weight:500; cursor:pointer; transition:opacity 0.2s;
+      margin-top:4px;
+    }
+    .fn-btn-primary:hover { opacity:0.88; }
+    .fn-close {
+      position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.06);
+      border:none; color:#7c7b8a; width:30px; height:30px; border-radius:8px;
+      cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s;
+    }
+    .fn-close:hover { background:rgba(255,255,255,0.12); }
+    .fn-success { text-align:center; padding:20px 0; }
+    .fn-success .fn-check { font-size:48px; margin-bottom:12px; }
+    .fn-success h3 { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:#f0eff8; margin-bottom:8px; }
+    .fn-success p  { font-size:13px; color:#7c7b8a; }
+    .sponsor-fest-card {
+      background:#1a1a24; border:1px solid rgba(255,255,255,0.07);
+      border-radius:14px; padding:20px; margin-bottom:12px; cursor:pointer;
+      transition:border-color 0.2s, transform 0.2s;
+    }
+    .sponsor-fest-card:hover { border-color:rgba(108,99,255,0.4); transform:translateY(-2px); }
+    .sponsor-fest-card .sf-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+    .sponsor-fest-card .sf-name { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:#f0eff8; }
+    .sponsor-fest-card .sf-college { font-size:12px; color:#7c7b8a; margin-top:2px; }
+    .sponsor-fest-card .sf-date { font-size:11px; color:#6c63ff; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+    .sponsor-fest-card .sf-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+    .sponsor-fest-card .sf-tag { font-size:11px; padding:2px 8px; border-radius:6px; background:rgba(255,255,255,0.05); color:#7c7b8a; }
+    .sponsor-fest-card .sf-seeking { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; color:#43e8c0; background:rgba(67,232,192,0.08); padding:3px 9px; border-radius:6px; }
+    .sponsor-fest-card .sf-dot { width:5px; height:5px; background:#43e8c0; border-radius:50%; animation:pulse 1.5s ease-in-out infinite; }
+    .sponsor-view-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+    .sponsor-view-back { background:rgba(255,255,255,0.06); border:none; color:#7c7b8a; padding:8px 14px; border-radius:8px; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:13px; transition:all 0.2s; }
+    .sponsor-view-back:hover { background:rgba(255,255,255,0.1); color:#f0eff8; }
+    .sponsor-view-title { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:#f0eff8; letter-spacing:-0.5px; }
+    .empty-state { text-align:center; padding:60px 20px; color:#7c7b8a; font-size:14px; }
+  `
+  document.head.appendChild(s)
+})()
+
+// ============================================================
+//  HTML MODALS — injected into body
+// ============================================================
+
+;(function injectModals() {
+  document.body.insertAdjacentHTML('beforeend', `
+
+    <!-- LIST YOUR FEST MODAL -->
+    <div class="fn-overlay" id="listFestOverlay" onclick="closeModal('listFestOverlay')">
+      <div class="fn-modal" onclick="event.stopPropagation()">
+        <button class="fn-close" onclick="closeModal('listFestOverlay')">✕</button>
+        <h2>List your fest</h2>
+        <p>Add your college fest to FestNexus and connect with sponsors actively looking for opportunities.</p>
+        <div id="listFestForm">
+          <div class="row2">
+            <div>
+              <label>Fest name *</label>
+              <input type="text" id="lf-name" placeholder="e.g. Engifest 2026">
+            </div>
+            <div>
+              <label>College *</label>
+              <input type="text" id="lf-college" placeholder="e.g. DTU">
+            </div>
+          </div>
+          <div class="row2">
+            <div>
+              <label>Fest type *</label>
+              <select id="lf-type">
+                <option value="">Select type</option>
+                <option value="cultural">Cultural</option>
+                <option value="tech">Technical</option>
+                <option value="sports">Sports</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label>Expected footfall</label>
+              <input type="text" id="lf-footfall" placeholder="e.g. 20,000+">
+            </div>
+          </div>
+          <div class="row2">
+            <div>
+              <label>Fest date *</label>
+              <input type="text" id="lf-date" placeholder="e.g. Mar 20–22, 2026">
+            </div>
+            <div>
+              <label>Coordinator email *</label>
+              <input type="email" id="lf-email" placeholder="you@college.edu">
+            </div>
+          </div>
+          <label>What are you looking for from sponsors?</label>
+          <textarea id="lf-desc" placeholder="e.g. Title sponsor for main stage, food & beverage partners, media coverage..."></textarea>
+          <label>Are you currently seeking sponsors?</label>
+          <select id="lf-seeking">
+            <option value="yes">Yes — actively looking</option>
+            <option value="no">No — just listing for visibility</option>
+          </select>
+          <button class="fn-btn-primary" onclick="submitListFest()">Submit fest →</button>
+        </div>
+        <div class="fn-success" id="listFestSuccess" style="display:none">
+          <div class="fn-check">🎉</div>
+          <h3>Fest listed successfully!</h3>
+          <p>Your fest is now visible to companies and startups looking to sponsor. We'll notify you when someone shows interest.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPONSOR CONNECT MODAL -->
+    <div class="fn-overlay" id="sponsorConnectOverlay" onclick="closeModal('sponsorConnectOverlay')">
+      <div class="fn-modal" onclick="event.stopPropagation()">
+        <button class="fn-close" onclick="closeModal('sponsorConnectOverlay')">✕</button>
+        <h2 id="sc-title">Connect as sponsor</h2>
+        <p id="sc-subtitle">Fill in your details and the fest team will reach out to you within 48 hours.</p>
+        <div id="sponsorConnectForm">
+          <div class="row2">
+            <div>
+              <label>Company / Brand name *</label>
+              <input type="text" id="sc-company" placeholder="e.g. Acme Startup">
+            </div>
+            <div>
+              <label>Industry</label>
+              <input type="text" id="sc-industry" placeholder="e.g. Fintech, FMCG">
+            </div>
+          </div>
+          <div class="row2">
+            <div>
+              <label>Contact person *</label>
+              <input type="text" id="sc-name" placeholder="Your name">
+            </div>
+            <div>
+              <label>Email *</label>
+              <input type="email" id="sc-email" placeholder="you@company.com">
+            </div>
+          </div>
+          <label>Sponsorship budget (approx.)</label>
+          <select id="sc-budget">
+            <option value="">Select range</option>
+            <option>Under ₹50,000</option>
+            <option>₹50,000 – ₹2,00,000</option>
+            <option>₹2,00,000 – ₹10,00,000</option>
+            <option>₹10,00,000+</option>
+          </select>
+          <label>Message to fest team</label>
+          <textarea id="sc-message" placeholder="What kind of sponsorship are you interested in? Any specific requirements?"></textarea>
+          <button class="fn-btn-primary" onclick="submitSponsorConnect()">Send enquiry →</button>
+        </div>
+        <div class="fn-success" id="sponsorConnectSuccess" style="display:none">
+          <div class="fn-check">✅</div>
+          <h3>Enquiry sent!</h3>
+          <p>The fest coordinator will reach out to you within 48 hours. Keep an eye on your inbox.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FESTS TO SPONSOR VIEW -->
+    <div class="fn-overlay" id="sponsorViewOverlay" onclick="closeModal('sponsorViewOverlay')">
+      <div class="fn-modal" style="max-width:640px" onclick="event.stopPropagation()">
+        <button class="fn-close" onclick="closeModal('sponsorViewOverlay')">✕</button>
+        <h2>Fests seeking sponsors</h2>
+        <p>These fests are actively looking for sponsors right now. Click any to send an enquiry.</p>
+        <div id="sponsorFestList"></div>
+      </div>
+    </div>
+
+  `)
+})()
+
+// ============================================================
+//  MODAL HELPERS
+// ============================================================
+
+function openModal(id) {
+  document.getElementById(id).classList.add('open')
+  document.body.style.overflow = 'hidden'
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open')
+  document.body.style.overflow = ''
+}
+
+function openListFest() {
+  document.getElementById('listFestForm').style.display = 'block'
+  document.getElementById('listFestSuccess').style.display = 'none'
+  openModal('listFestOverlay')
+}
+
+function submitListFest() {
+  const name    = document.getElementById('lf-name').value.trim()
+  const college = document.getElementById('lf-college').value.trim()
+  const type    = document.getElementById('lf-type').value
+  const date    = document.getElementById('lf-date').value.trim()
+  const email   = document.getElementById('lf-email').value.trim()
+  if (!name || !college || !type || !date || !email) {
+    alert('Please fill in all required fields.')
+    return
+  }
+  // In real app: POST to /api/fests with this data
+  document.getElementById('listFestForm').style.display = 'none'
+  document.getElementById('listFestSuccess').style.display = 'block'
+}
+
+let currentSponsorFest = null
+
+function openSponsorConnect(festName, collegeName) {
+  currentSponsorFest = { festName, collegeName }
+  document.getElementById('sc-title').textContent = `Sponsor ${festName}`
+  document.getElementById('sc-subtitle').textContent = `Connect with the ${festName} team at ${collegeName}. Fill in your details and they'll reach out within 48 hours.`
+  document.getElementById('sponsorConnectForm').style.display = 'block'
+  document.getElementById('sponsorConnectSuccess').style.display = 'none'
+  // clear fields
+  ;['sc-company','sc-industry','sc-name','sc-email','sc-message'].forEach(id => {
+    document.getElementById(id).value = ''
+  })
+  document.getElementById('sc-budget').value = ''
+  openModal('sponsorConnectOverlay')
+}
+
+function submitSponsorConnect() {
+  const company = document.getElementById('sc-company').value.trim()
+  const name    = document.getElementById('sc-name').value.trim()
+  const email   = document.getElementById('sc-email').value.trim()
+  if (!company || !name || !email) {
+    alert('Please fill in company name, your name and email.')
+    return
+  }
+  // In real app: POST to /api/sponsors/enquiry
+  document.getElementById('sponsorConnectForm').style.display = 'none'
+  document.getElementById('sponsorConnectSuccess').style.display = 'block'
+}
+
+function openSponsorView() {
+  const seeking = UPCOMING.filter(u => u.seeking)
+  const list = document.getElementById('sponsorFestList')
+  if (!seeking.length) {
+    list.innerHTML = `<div class="empty-state">No fests are actively seeking sponsors right now.<br>Check back soon!</div>`
+  } else {
+    list.innerHTML = seeking.map(u => `
+      <div class="sponsor-fest-card" onclick="openSponsorConnect('${u.fest}', '${u.college}'); closeModal('sponsorViewOverlay')">
+        <div class="sf-header">
+          <div>
+            <div class="sf-name">${u.fest}</div>
+            <div class="sf-college">${u.college} · ${u.type}</div>
+          </div>
+          <div class="sf-date">${u.date}</div>
+        </div>
+        <div class="sf-tags">
+          ${u.tags.map(t => `<span class="sf-tag">${t}</span>`).join('')}
+          <span class="sf-seeking"><span class="sf-dot"></span> Seeking sponsors</span>
+        </div>
+      </div>
+    `).join('')
+  }
+  openModal('sponsorViewOverlay')
+}
 
 // ============================================================
 //  RENDER — COLLEGE GRID
@@ -868,7 +1166,6 @@ function trackMouse(e, el) {
   el.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%')
 }
 
-
 // ============================================================
 //  FILTER + SEARCH
 // ============================================================
@@ -895,9 +1192,8 @@ function applyFilters() {
   renderColleges(filtered)
 }
 
-
 // ============================================================
-//  UPCOMING
+//  UPCOMING — with sponsor connect buttons
 // ============================================================
 
 function renderUpcoming() {
@@ -909,11 +1205,20 @@ function renderUpcoming() {
       <div class="upcoming-tags">
         ${u.tags.map(t => `<span class="upcoming-tag">${t}</span>`).join('')}
       </div>
-      ${u.seeking ? `<div class="seeking-badge"><span class="seeking-dot"></span> Seeking sponsors</div>` : ''}
+      ${u.seeking ? `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px; flex-wrap:wrap; gap:8px;">
+          <div class="seeking-badge"><span class="seeking-dot"></span> Seeking sponsors</div>
+          <button onclick="openSponsorConnect('${u.fest}','${u.college}')"
+            style="background:#6c63ff;color:#fff;border:none;padding:6px 14px;border-radius:8px;
+                   font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;
+                   transition:opacity 0.2s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
+            Connect →
+          </button>
+        </div>
+      ` : ''}
     </div>
   `).join('')
 }
-
 
 // ============================================================
 //  COLLEGE DETAIL
@@ -922,15 +1227,12 @@ function renderUpcoming() {
 function openCollege(id) {
   const college = COLLEGES.find(c => c.id === id)
   if (!college) return
-
   document.getElementById('homeView').classList.add('hidden')
   document.getElementById('detailView').classList.add('active')
   window.scrollTo({ top: 0, behavior: 'smooth' })
-
   const hero = document.getElementById('detailHero')
   hero.dataset.collegeId = id
   renderDetailHero(college)
-
   const fests = FEST_DATA[id] || {}
   renderFestTabs(college, fests)
   renderFestsByType(fests, college.fesTypes?.[0] || 'cultural')
@@ -969,7 +1271,6 @@ function renderDetailHero(college) {
   `
 }
 
-
 // ============================================================
 //  FEST TABS
 // ============================================================
@@ -998,7 +1299,6 @@ function switchTab(type, btn) {
   renderFestsByType(FEST_DATA[collegeId] || {}, type)
 }
 
-
 // ============================================================
 //  FEST LIST
 // ============================================================
@@ -1006,12 +1306,10 @@ function switchTab(type, btn) {
 function renderFestsByType(fests, type) {
   const list      = fests[type] || []
   const container = document.getElementById('festList')
-
   if (!list.length) {
     container.innerHTML = `<div style="padding:40px;text-align:center;color:var(--muted);font-size:14px">No data yet — be the first to submit!</div>`
     return
   }
-
   container.innerHTML = list.map(f => {
     const yearKeys  = Object.keys(f.years).sort((a, b) => b - a)
     const firstYear = yearKeys[0]
@@ -1080,7 +1378,6 @@ function switchYear(festId, year, btn) {
     fest ? renderSponsors(fest.years[year]) : ''
 }
 
-
 // ============================================================
 //  NAVIGATION
 // ============================================================
@@ -1091,15 +1388,14 @@ function goHome() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-
 // ============================================================
 //  INIT
 // ============================================================
 
 renderColleges(COLLEGES)
 renderUpcoming()
-// keep Render backend alive — pings every 10 minutes
+
+// keep Render backend alive
 setInterval(() => {
-  fetch('https://project-fextnexus.onrender.com/api/colleges')
-    .catch(() => {})
+  fetch('https://project-fextnexus.onrender.com/api/colleges').catch(() => {})
 }, 10 * 60 * 1000)
