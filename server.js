@@ -4,9 +4,7 @@ const cors     = require('cors')
 require('dotenv').config()
 
 const app = express()
-app.use(cors({
-  origin: 'https://glittery-truffle-e2d1f2.netlify.app/'
-}))
+app.use(cors())
 app.use(express.json())
 app.use(express.static('public'))
 
