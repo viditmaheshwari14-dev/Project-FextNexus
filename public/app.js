@@ -796,12 +796,12 @@ const FEST_DATA = {
 }
 
 const UPCOMING = [
-  { date:'Mar 20-22, 2025', fest:'Engifest 2025',   college:'DTU',        type:'Cultural', seeking:true,  tags:['Cultural','50k+ footfall'] },
-  { date:'Apr 4–6, 2025',   fest:'Odyssey 2025',    college:'IIIT Delhi', type:'Cultural',        seeking:true,  tags:['Cultural','15k footfall'] },
-  { date:'Apr 11–13, 2025', fest:'Moksha',       college:'NSUT',       type:'Cultural Fest',       seeking:false, tags:['Cultural','30k footfall'] },
-  { date:'Apr 18–20, 2025', fest:'Crossroads 2025', college:'SRCC',       type:'Cultural',        seeking:true,  tags:['Cultural'] },
-  { date:'May 2–4, 2025',   fest:'Rendezvous 2025', college:'IIT Delhi',  type:'Cultural',        seeking:false,  tags:['Cultural','60k+ footfall'] },
-  { date:'April 9–11, 2025',  fest:'Tarang 2025',     college:'LSR',        type:'Cultural',        seeking:true, tags:['Cultural',"Women's College"] },
+  { date:'Mar 20-22, 2026', fest:'Engifest 2026',   college:'DTU',        type:'Cultural', seeking:true,  tags:['Cultural','50k+ footfall'] },
+  { date:'Apr 4–6, 2026',   fest:'Odyssey 2026',    college:'IIIT Delhi', type:'Cultural',        seeking:true,  tags:['Cultural','15k footfall'] },
+  { date:'Apr 11–13, 2026', fest:'Moksha',       college:'NSUT',       type:'Cultural Fest',       seeking:false, tags:['Cultural','30k footfall'] },
+  { date:'Apr 18–20, 2026', fest:'Crossroads 2026', college:'SRCC',       type:'Cultural',        seeking:true,  tags:['Cultural'] },
+  { date:'May 2–4, 2026',   fest:'Rendezvous 2026', college:'IIT Delhi',  type:'Cultural',        seeking:false,  tags:['Cultural','60k+ footfall'] },
+  { date:'April 9–11, 2026',  fest:'Tarang 2026',     college:'LSR',        type:'Cultural',        seeking:true, tags:['Cultural',"Women's College"] },
 ]
 
 const TYPE_BADGE = {
