@@ -1,7 +1,7 @@
 // ============================================================
 //  DATA
 // ============================================================
-
+const API_URL = "https://project-fextnexus.onrender.com";
 const COLLEGES = [
   { id:'dtu',      name:'Delhi Technological University',         short:'DTU',   type:'state', typeName:'State Univ.', location:'Rohini, Delhi',       color:'#6c63ff', glow:'rgba(108,99,255,0.12)',  fests:14, sponsors:85,  years:5, established:1941, students:'10,000+', fesTypes:['cultural','tech','sports'] },
   { id:'nsut',     name:'Netaji Subhas University of Technology', short:'NSUT',  type:'state', typeName:'State Univ.', location:'Dwarka, Delhi',        color:'#ff6584', glow:'rgba(255,101,132,0.12)', fests:10, sponsors:62,  years:4, established:1983, students:'7,500+',  fesTypes:['cultural','tech','sports'] },
