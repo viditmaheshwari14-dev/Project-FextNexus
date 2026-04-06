@@ -3,6 +3,7 @@ const mongoose     = require('mongoose')
 const collegeModel = require('./models/collegemodels')
 const festModel    = require('./models/festmodels')
 const upcomingModel= require('./models/upcomingmodels')
+const contactModel= require('./models/contactmodels')
 
 const COLLEGES = [
   { id:'dtu',      name:'Delhi Technological University',         short:'DTU',   type:'state', typeName:'State Univ.', location:'Rohini, Delhi',       color:'#6c63ff', glow:'rgba(108,99,255,0.12)',  fests:14, sponsors:85,  years:5, established:1941, students:'10,000+', fesTypes:['cultural','tech','sports'] },
@@ -53,6 +54,7 @@ async function seed() {
     await collegeModel.deleteMany()
     await festModel.deleteMany()
     await upcomingModel.deleteMany()
+    await contactModel.deleteMany()
     console.log('🗑️  Cleared old data')
 
     await collegeModel.insertMany(COLLEGES)
@@ -63,6 +65,9 @@ async function seed() {
 
     await upcomingModel.insertMany(UPCOMING)
     console.log(`✅ Inserted ${UPCOMING.length} upcoming events`)
+
+    await contactModel.insertMany(CONTACTS)
+    console.log(`✅ Inserted ${CONTACTS.length} contacts`)
 
     console.log('\n🎉 Database seeded successfully!')
     process.exit(0)
