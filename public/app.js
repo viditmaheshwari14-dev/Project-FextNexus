@@ -1292,10 +1292,14 @@ function renderFestTabs(college, fests) {
   `).join('')
 }
 
+function getCurrentCollegeId() {
+  return document.getElementById('detailHero').dataset.collegeId || ''
+}
+
 function switchTab(type, btn) {
   document.querySelectorAll('.fest-tab').forEach(b => b.classList.remove('active'))
   btn.classList.add('active')
-  const collegeId = document.getElementById('detailHero').dataset.collegeId
+  const collegeId = getCurrentCollegeId()
   renderFestsByType(FEST_DATA[collegeId] || {}, type)
 }
 
@@ -1332,6 +1336,9 @@ function renderFestsByType(fests, type) {
               <div class="fest-stat-num">${f.sponsors_count}</div>
               <div class="fest-stat-label">Sponsors</div>
             </div>
+            <button class="email-template-btn" onclick="openEmailTemplate('${f.id}'); event.stopPropagation()">
+              ✉️ Email template
+            </button>
             <button class="expand-btn" onclick="toggleFest('${f.id}')">+</button>
           </div>
         </div>
@@ -1351,17 +1358,102 @@ function renderFestsByType(fests, type) {
   }).join('')
 }
 
+// ============================================================
+//  LINKEDIN SEARCH MAP
+// ============================================================
+
+const SPONSOR_LINKEDIN = {
+  'Razorpay':       'https://www.linkedin.com/company/razorpay',
+  'PhonePe':        'https://www.linkedin.com/company/phonepe-internet',
+  'Cred':           'https://www.linkedin.com/company/cred-club',
+  'Paytm':          'https://www.linkedin.com/company/paytm',
+  'MakeMyTrip':     'https://www.linkedin.com/company/makemytrip',
+  'Juspay':         'https://www.linkedin.com/company/juspay',
+  'Meesho':         'https://www.linkedin.com/company/meesho',
+  'Unacademy':      'https://www.linkedin.com/company/unacademy',
+  'Coding Ninjas':  'https://www.linkedin.com/company/coding-ninjas',
+  'GeeksforGeeks':  'https://www.linkedin.com/company/geeksforgeeks',
+  'Course Hero':    'https://www.linkedin.com/company/course-hero',
+  'Next IAS':       'https://www.linkedin.com/company/next-ias',
+  'Vision IAS':     'https://www.linkedin.com/company/vision-ias',
+  'Internshala':    'https://www.linkedin.com/company/internshala',
+  'Unstop':         'https://www.linkedin.com/company/unstop',
+  'Ola':            'https://www.linkedin.com/company/olacabs',
+  'Rapido':         'https://www.linkedin.com/company/rapido-bike-taxi',
+  'Freedo':         'https://www.linkedin.com/company/freedo-rentals',
+  'AbhiBus':        'https://www.linkedin.com/company/abhibus',
+  'Swiggy':         'https://www.linkedin.com/company/swiggy',
+  'Zomato':         'https://www.linkedin.com/company/zomato',
+  'Eazydiner':      'https://www.linkedin.com/company/eazydiner',
+  'Nykaa':          'https://www.linkedin.com/company/nykaa',
+  'Myntra':         'https://www.linkedin.com/company/myntra',
+  'Bewakoof':       'https://www.linkedin.com/company/bewakoof-com',
+  'Mamaearth':      'https://www.linkedin.com/company/mamaearth',
+  'Clovia':         'https://www.linkedin.com/company/clovia',
+  'Plum':           'https://www.linkedin.com/company/plum-goodness',
+  'Beardo':         'https://www.linkedin.com/company/beardo',
+  'Snitch':         'https://www.linkedin.com/company/snitch-co',
+  'boAt':           'https://www.linkedin.com/company/boat-lifestyle',
+  'Noise':          'https://www.linkedin.com/company/go-noise',
+  'Boult Audio':    'https://www.linkedin.com/company/boult-audio',
+  'Portronics':     'https://www.linkedin.com/company/portronics',
+  'GitHub':         'https://www.linkedin.com/company/github',
+  'Postman':        'https://www.linkedin.com/company/postman-platform',
+  'JetBrains':      'https://www.linkedin.com/company/jetbrains',
+  'Atlassian':      'https://www.linkedin.com/company/atlassian',
+  'Decathlon':      'https://www.linkedin.com/company/decathlon',
+  'Sparx':          'https://www.linkedin.com/company/sparx-shoes',
+  'Spotify':        'https://www.linkedin.com/company/spotify',
+  'JioSaavn':       'https://www.linkedin.com/company/jiosaavn',
+  'WinZo':          'https://www.linkedin.com/company/winzo-games',
+  'Chaupal':        'https://www.linkedin.com/company/chaupal-ott',
+  'StockGro':       'https://www.linkedin.com/company/stockgro',
+  'MuscleBlaze':    'https://www.linkedin.com/company/muscleblaze',
+  'Alpino':         'https://www.linkedin.com/company/alpino-health-foods',
+  'Max Protein':    'https://www.linkedin.com/company/max-protein',
+  'Fastrack':       'https://www.linkedin.com/company/fastrack',
+  'Dream11':        'https://www.linkedin.com/company/dream11',
+  'Dunzo':          'https://www.linkedin.com/company/dunzo',
+  'Wakefit':        'https://www.linkedin.com/company/wakefit',
+  'Lenskart':       'https://www.linkedin.com/company/lenskart',
+  'Groww':          'https://www.linkedin.com/company/groww',
+  'Zepto':          'https://www.linkedin.com/company/zepto-app',
+  'BlinkIt':        'https://www.linkedin.com/company/blinkit',
+  'Ola Electric':   'https://www.linkedin.com/company/ola-electric',
+  'Bigmuscles Nutrition': 'https://www.linkedin.com/company/bigmuscles-nutrition',
+  'Hover Robotix':  'https://www.linkedin.com/company/hover-robotix',
+  'BoostGrad':      'https://www.linkedin.com/company/boostgrad',
+}
+
+function getLinkedInUrl(companyName) {
+  if (SPONSOR_LINKEDIN[companyName]) return SPONSOR_LINKEDIN[companyName]
+  const q = encodeURIComponent(`marketing head ${companyName} India`)
+  return `https://www.linkedin.com/search/results/people/?keywords=${q}`
+}
+
 function renderSponsors(sponsors) {
   if (!sponsors || !sponsors.length) {
     return `<p style="color:var(--muted);font-size:13px;padding:10px 0">No sponsors listed.</p>`
   }
-  return sponsors.map(s => `
-    <div class="sponsor-card">
-      <div class="sponsor-tier tier-${s.tier}">${s.tier}</div>
-      <div class="sponsor-name">${s.name}</div>
-      <div class="sponsor-category">${s.category}</div>
-    </div>
-  `).join('')
+  return sponsors.map(s => {
+    const linkedinUrl = getLinkedInUrl(s.name)
+    const skipLinkedIn = ['Google','Microsoft','Amazon','Apple','Meta','Samsung','Intel','IBM','Qualcomm','Goldman Sachs','Deloitte','EY','KPMG','PwC','Jio','Reliance Jio','Pepsi','Coca-Cola','Nestle','Nike','Adidas','Puma','HDFC Bank','ICICI Bank','Audi','BMW','Mercedes','Honda','Hero','Gatorade'].includes(s.name)
+    return `
+      <div class="sponsor-card">
+        <div class="sponsor-tier tier-${s.tier}">${s.tier}</div>
+        <div class="sponsor-name">${s.name}</div>
+        <div class="sponsor-card-footer">
+          <div class="sponsor-category">${s.category}</div>
+          ${!skipLinkedIn ? `
+            <a class="linkedin-btn" href="${linkedinUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          ` : ''}
+        </div>
+      </div>
+    `
+  }).join('')
 }
 
 function toggleFest(id) {
@@ -1371,7 +1463,7 @@ function toggleFest(id) {
 function switchYear(festId, year, btn) {
   document.querySelectorAll(`#yt-${festId} .year-tab`).forEach(b => b.classList.remove('active'))
   btn.classList.add('active')
-  const collegeId = document.getElementById('detailHero').dataset.collegeId
+  const collegeId = getCurrentCollegeId()
   const allFests  = Object.values(FEST_DATA[collegeId] || {}).flat()
   const fest      = allFests.find(f => f.id === festId)
   document.getElementById(`sg-${festId}`).innerHTML =
@@ -1387,6 +1479,165 @@ function goHome() {
   document.getElementById('detailView').classList.remove('active')
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+// ============================================================
+//  EMAIL TEMPLATE GENERATOR
+// ============================================================
+
+function openEmailTemplate(festId) {
+  const collegeId = getCurrentCollegeId()
+  const allFests  = Object.values(FEST_DATA[collegeId] || {}).flat()
+  const fest      = allFests.find(f => f.id === festId)
+  const college   = COLLEGES.find(c => c.id === collegeId)
+  if (!fest || !college) return
+
+  const latestYear   = Object.keys(fest.years).sort((a,b) => b-a)[0]
+  const sponsors     = fest.years[latestYear] || []
+  const titleSponsor = sponsors.find(s => s.tier === 'title')?.name || 'N/A'
+  const goldSponsors = sponsors.filter(s => s.tier === 'gold').map(s => s.name).join(', ') || 'N/A'
+  const totalSpons   = sponsors.length
+
+  const subject = `Sponsorship Opportunity — ${fest.name} ${new Date().getFullYear()}, ${college.short} (${fest.footfall} footfall)`
+
+  const body = `Subject: ${subject}
+
+Hi [Marketing Head's Name],
+
+I'm [Your Name], [Your Role] at ${college.name}. I'm reaching out regarding a sponsorship opportunity for ${fest.name} ${new Date().getFullYear()}.
+
+About ${fest.name}:
+• ${fest.tagline}
+• Expected footfall: ${fest.footfall}
+• College: ${college.name}, ${college.location}
+• Established: ${college.established} | Students: ${college.students}
+
+Past sponsors (${latestYear}):
+• Title Sponsor: ${titleSponsor}
+• Gold Sponsors: ${goldSponsors}
+• Total sponsors: ${totalSpons}+
+
+We have multiple sponsorship tiers available — Title, Gold, Silver, Bronze, and Associate — each with customised branding and engagement benefits. We would love to explore how [Company Name] can be a part of ${fest.name} this year.
+
+Could we schedule a brief call to discuss further?
+
+Looking forward to hearing from you.
+
+Best regards,
+[Your Name]
+[Your Role] | ${fest.name} ${new Date().getFullYear()}
+${college.name}
+[Your Phone Number] | [Your Email]`
+
+  document.getElementById('emailSubject').value = subject
+  document.getElementById('emailBody').value = body
+  document.getElementById('emailCopyMsg').style.display = 'none'
+  document.getElementById('emailOverlay').classList.add('open')
+  document.body.style.overflow = 'hidden'
+}
+
+function copyEmail(field) {
+  const el = document.getElementById(field)
+  navigator.clipboard.writeText(el.value).then(() => {
+    const msg = document.getElementById('emailCopyMsg')
+    msg.textContent = field === 'emailSubject' ? '✓ Subject copied!' : '✓ Email copied!'
+    msg.style.display = 'block'
+    setTimeout(() => msg.style.display = 'none', 2000)
+  })
+}
+
+function closeEmailModal() {
+  document.getElementById('emailOverlay').classList.remove('open')
+  document.body.style.overflow = ''
+}
+
+
+// ============================================================
+//  INJECT MODAL STYLES + HTML
+// ============================================================
+
+;(function injectUI() {
+  const s = document.createElement('style')
+  s.textContent = `
+    .fn-overlay {
+      display:none; position:fixed; inset:0; z-index:9999;
+      background:rgba(0,0,0,0.75); backdrop-filter:blur(6px);
+      align-items:center; justify-content:center; padding:16px;
+    }
+    .fn-overlay.open { display:flex; }
+    .fn-modal {
+      background:#111118; border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px; padding:32px; width:100%; max-width:580px;
+      max-height:90vh; overflow-y:auto; position:relative;
+      animation:modalIn 0.22s ease;
+    }
+    @keyframes modalIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+    .fn-modal h2 { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; letter-spacing:-0.5px; margin-bottom:6px; color:#f0eff8; }
+    .fn-modal .fn-sub { font-size:12px; color:#7c7b8a; margin-bottom:20px; line-height:1.6; }
+    .fn-modal label { display:block; font-size:11px; color:#7c7b8a; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.05em; font-weight:500; }
+    .fn-modal input[type=text], .fn-modal textarea {
+      width:100%; background:#1a1a24; border:1px solid rgba(255,255,255,0.08);
+      border-radius:10px; padding:10px 14px; color:#f0eff8;
+      font-family:'DM Sans',sans-serif; font-size:13px; outline:none;
+      margin-bottom:4px; box-sizing:border-box; transition:border-color 0.2s;
+    }
+    .fn-modal textarea { min-height:300px; resize:vertical; font-size:12px; line-height:1.7; }
+    .fn-modal input[type=text]:focus, .fn-modal textarea:focus { border-color:rgba(108,99,255,0.5); }
+    .fn-copy-btn {
+      background:rgba(108,99,255,0.15); color:#a09aff; border:1px solid rgba(108,99,255,0.3);
+      padding:5px 14px; border-radius:7px; font-family:'DM Sans',sans-serif;
+      font-size:12px; font-weight:500; cursor:pointer; margin-bottom:16px;
+      transition:background 0.2s;
+    }
+    .fn-copy-btn:hover { background:rgba(108,99,255,0.25); }
+    .fn-copy-msg { font-size:12px; color:#43e8c0; display:none; margin-bottom:12px; }
+    .fn-close-btn {
+      position:absolute; top:14px; right:14px; background:rgba(255,255,255,0.06);
+      border:none; color:#7c7b8a; width:28px; height:28px; border-radius:7px;
+      cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s;
+    }
+    .fn-close-btn:hover { background:rgba(255,255,255,0.12); color:#f0eff8; }
+    .email-template-btn {
+      display:inline-flex; align-items:center; gap:5px;
+      background:rgba(67,232,192,0.1); color:#43e8c0;
+      border:1px solid rgba(67,232,192,0.25); padding:5px 12px;
+      border-radius:7px; font-family:'DM Sans',sans-serif; font-size:12px;
+      font-weight:500; cursor:pointer; transition:background 0.2s; margin-left:8px;
+    }
+    .email-template-btn:hover { background:rgba(67,232,192,0.18); }
+    .linkedin-btn {
+      display:inline-flex; align-items:center; gap:4px;
+      background:rgba(10,102,194,0.12); color:#6ba3d6;
+      border:1px solid rgba(10,102,194,0.25); padding:3px 9px;
+      border-radius:6px; font-size:10px; font-weight:500; cursor:pointer;
+      text-decoration:none; transition:background 0.2s; white-space:nowrap;
+    }
+    .linkedin-btn:hover { background:rgba(10,102,194,0.22); }
+    .sponsor-card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:6px; }
+  `
+  document.head.appendChild(s)
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="fn-overlay" id="emailOverlay" onclick="closeEmailModal()">
+      <div class="fn-modal" onclick="event.stopPropagation()">
+        <button class="fn-close-btn" onclick="closeEmailModal()">✕</button>
+        <h2>✉️ Sponsor outreach email</h2>
+        <p class="fn-sub">Copy the subject and email body below. Replace the <strong>[bracketed]</strong> parts with your actual details before sending.</p>
+
+        <label>Subject line</label>
+        <input type="text" id="emailSubject" readonly>
+        <button class="fn-copy-btn" onclick="copyEmail('emailSubject')">Copy subject</button>
+
+        <label>Email body</label>
+        <textarea id="emailBody" readonly></textarea>
+        <button class="fn-copy-btn" onclick="copyEmail('emailBody')">Copy full email</button>
+
+        <div class="fn-copy-msg" id="emailCopyMsg"></div>
+      </div>
+    </div>
+  `)
+})()
+
 
 // ============================================================
 //  INIT
