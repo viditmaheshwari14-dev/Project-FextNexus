@@ -747,6 +747,25 @@
   .home-view { display: block; }
   .home-view.hidden { display: none; }
 
+  /* ---- UTILITY ---- */
+  .hidden { display: none !important; }
+
+  /* ---- SPONSOR SEARCH TOGGLE & VIEW (layout — visual styles injected by injectUI) ---- */
+  #ssToggleBtn {
+    display: inline-flex;
+    margin: 0 auto 20px;
+    /* centre it under the search-bar, aligned with the grid */
+    margin-left: max(48px, calc((100% - 1200px) / 2 + 48px));
+  }
+
+  #sponsorSearchView {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
   /* Stagger cards */
   .college-card:nth-child(1) { animation-delay: 0.0s; }
   .college-card:nth-child(2) { animation-delay: 0.05s; }
@@ -793,9 +812,51 @@
   }
 
   @media (max-width: 768px) {
-    nav { padding: 0 24px; }
-    .hero, .colleges-grid, .section-header, .upcoming-section, .connect-section { padding-left: 24px; padding-right: 24px; }
-    .colleges-grid { grid-template-columns: 1fr; }
-    h1 { font-size: 36px; }
+    nav { padding: 0 20px; }
+    .nav-links { gap: 2px; }
+    .nav-links li:not(:last-child) { display: none; }
+
+    .hero,
+    .section-header,
+    .upcoming-section,
+    .connect-section { padding-left: 20px; padding-right: 20px; }
+
+    .colleges-grid {
+      padding-left: 20px; padding-right: 20px;
+      grid-template-columns: 1fr;
+    }
+
+    #sponsorSearchView { padding-left: 20px; padding-right: 20px; }
+
+    /* sponsor search toggle flush to left edge on mobile */
+    #ssToggleBtn { margin-left: 20px; }
+
+    h1 { font-size: 36px; letter-spacing: -1px; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+
+    .detail-view { padding-left: 20px; padding-right: 20px; }
     .detail-hero { grid-template-columns: 1fr; }
+    .connect-box { padding: 36px 24px; }
+
+    /* contacts panel full-width on mobile */
+    #contactsPanel {
+      width: 100%;
+      right: -100%;
+    }
+    #contactsPanel.open { right: 0; }
+
+    /* fest item right — stack on small screens */
+    .fest-item-right { flex-wrap: wrap; gap: 10px; }
+    .fest-item-header { flex-wrap: wrap; gap: 12px; }
+
+    /* sponsor grid single column */
+    .sponsors-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .sponsors-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 16px; }
+    .connect-btns { flex-direction: column; }
+    .ss-card-head { flex-direction: column; }
+    .ss-card-actions { width: 100%; justify-content: flex-start; }
   }

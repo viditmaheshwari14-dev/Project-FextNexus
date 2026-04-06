@@ -1444,6 +1444,7 @@ function renderSponsors(sponsors) {
         <div class="sponsor-name">${s.name}</div>
         <div class="sponsor-card-footer">
           <div class="sponsor-category">${s.category}</div>
+          <button class="contacts-btn" onclick="openContactsPanel('${s.name.replace(/'/g,"\\'")}'); event.stopPropagation()">👤 Contacts</button>
           ${!skipLinkedIn ? `
             <a class="linkedin-btn" href="${linkedinUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -1479,6 +1480,237 @@ function goHome() {
   document.getElementById('detailView').classList.remove('active')
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+// ============================================================
+//  CROSS-COLLEGE SPONSOR SEARCH
+// ============================================================
+
+let _sponsorIndex = null
+
+function buildSponsorIndex() {
+  if (_sponsorIndex) return _sponsorIndex
+  const idx = {}
+  for (const [colId, types] of Object.entries(FEST_DATA)) {
+    const col = COLLEGES.find(c => c.id === colId)
+    for (const fests of Object.values(types)) {
+      for (const fest of fests) {
+        for (const [yr, sponsors] of Object.entries(fest.years)) {
+          const year = parseInt(yr)
+          if (year < 2023) continue           // only show 2023–2025
+          for (const s of sponsors) {
+            if (!idx[s.name]) idx[s.name] = []
+            idx[s.name].push({
+              colId,
+              colShort:  col?.short  || colId.toUpperCase(),
+              colColor:  col?.color  || '#aaa',
+              festId:    fest.id,
+              festName:  fest.name,
+              year,
+              tier:      s.tier,
+              category:  s.category,
+            })
+          }
+        }
+      }
+    }
+  }
+  for (const v of Object.values(idx)) v.sort((a, b) => b.year - a.year)
+  _sponsorIndex = idx
+  return idx
+}
+
+function doSponsorSearch() {
+  const q   = (document.getElementById('ssInput')?.value || '').trim()
+  const res = document.getElementById('ssResults')
+  if (!res) return
+
+  if (q.length < 2) {
+    res.innerHTML = `<div class="ss-hint">Start typing a company name — searches across every college & fest</div>`
+    return
+  }
+
+  const idx     = buildSponsorIndex()
+  const ql      = q.toLowerCase()
+  const TORDER  = ['title','gold','silver','bronze','partner','associate']
+  const matches = Object.entries(idx)
+    .filter(([name]) => name.toLowerCase().includes(ql))
+    .sort((a, b) => b[1].length - a[1].length)
+    .slice(0, 20)
+
+  if (!matches.length) {
+    res.innerHTML = `<div class="ss-hint">No results for "<strong>${q}</strong>" — try a shorter name</div>`
+    return
+  }
+
+  res.innerHTML = matches.map(([name, apps]) => {
+    const topTier = TORDER.find(t => apps.some(a => a.tier === t)) || apps[0].tier
+    const colleges = [...new Set(apps.map(a => a.colShort))].join(', ')
+    const liUrl   = getLinkedInUrl(name)
+    const safeName = name.replace(/\\/g,'\\\\').replace(/'/g,"\\'")
+    return `
+      <div class="ss-card">
+        <div class="ss-card-head">
+          <div class="ss-card-info">
+            <div class="ss-cname">${name}</div>
+            <div class="ss-cmeta">${apps[0].category || '—'} &nbsp;·&nbsp; ${apps.length} appearance${apps.length > 1 ? 's' : ''} &nbsp;·&nbsp; ${colleges}</div>
+          </div>
+          <div class="ss-card-actions">
+            <span class="sponsor-tier tier-${topTier}" style="font-size:10px">${topTier}</span>
+            <button class="ss-contacts-btn" onclick="openContactsPanel('${safeName}')">👤 Contacts</button>
+            <a class="linkedin-btn" href="${liUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div class="ss-rows">
+          ${apps.map(a => `
+            <div class="ss-row" onclick="openCollege('${a.colId}')">
+              <span class="ss-col" style="color:${a.colColor}">${a.colShort}</span>
+              <span class="ss-fest">${a.festName}</span>
+              <span class="ss-yr">${a.year}</span>
+              <span class="sponsor-tier tier-${a.tier}" style="font-size:9px;padding:2px 6px">${a.tier}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `
+  }).join('')
+}
+
+function toggleSponsorSearch(btn) {
+  const view    = document.getElementById('sponsorSearchView')
+  const grid    = document.getElementById('collegesGrid')
+  const filters = document.getElementById('filtersRow')
+  const isOpen  = view.classList.contains('active')
+
+  if (!isOpen) {
+    view.classList.add('active')
+    grid?.classList.add('hidden')
+    filters?.classList.add('hidden')
+    btn.textContent = '← Back to colleges'
+    buildSponsorIndex()   // warm the index
+    document.getElementById('ssInput')?.focus()
+    doSponsorSearch()
+  } else {
+    view.classList.remove('active')
+    grid?.classList.remove('hidden')
+    filters?.classList.remove('hidden')
+    btn.textContent = '🔍 Search sponsors'
+  }
+}
+
+
+// ============================================================
+//  SPONSOR CONTACT DATABASE
+// ============================================================
+
+// Seed of known / publicly available partnership contacts
+const SEED_CONTACTS = {
+  'Razorpay':    [{ name: 'Partnerships Team',    role: 'Partnerships',       contact: 'partnerships@razorpay.com',  type: 'email', verified: true  }],
+  'Swiggy':      [{ name: 'Brand Solutions',      role: 'Marketing',          contact: 'brandsolutions@swiggy.in',   type: 'email', verified: true  }],
+  'Zomato':      [{ name: 'Campus Team',          role: 'Campus Outreach',    contact: 'college@zomato.com',         type: 'email', verified: true  }],
+  'Internshala': [{ name: 'Campus Team',          role: 'Outreach',           contact: 'campus@internshala.com',     type: 'email', verified: true  }],
+  'Unstop':      [{ name: 'Partnerships',         role: 'Campus',             contact: 'hello@unstop.com',           type: 'email', verified: true  }],
+  'Dream11':     [{ name: 'Brand Team',           role: 'Sponsorships',       contact: 'sponsorships@dream11.com',   type: 'email', verified: false }],
+  'boAt':        [{ name: 'Marketing',            role: 'Brand Partnerships', contact: 'https://www.linkedin.com/company/boat-lifestyle', type: 'linkedin', verified: false }],
+  'PhonePe':     [{ name: 'Brand Partnerships',   role: 'Marketing',          contact: 'https://www.linkedin.com/company/phonepe-internet', type: 'linkedin', verified: false }],
+  'Cred':        [{ name: 'Partnerships',         role: 'Brand',              contact: 'https://www.linkedin.com/company/cred-club',  type: 'linkedin', verified: false }],
+  'GeeksforGeeks':[{ name: 'Campus Team',         role: 'Outreach',           contact: 'campus@geeksforgeeks.org',   type: 'email', verified: true  }],
+}
+
+async function fetchContacts(company) {
+  try {
+    const r = await fetch(`${API}/api/contacts?company=${encodeURIComponent(company)}`)
+    if (!r.ok) return []
+    return await r.json()
+  } catch { return [] }
+}
+
+async function openContactsPanel(company) {
+  const panel = document.getElementById('contactsPanel')
+  const title = document.getElementById('contactsTitle')
+  const list  = document.getElementById('contactsList')
+  if (!panel) return
+
+  title.textContent = company
+  list.innerHTML = `<div class="ct-loading">Fetching contacts…</div>`
+  panel.classList.add('open')
+  document.body.style.overflow = 'hidden'
+
+  // reset submit form
+  ;['ctName','ctRole','ctContact'].forEach(id => {
+    const el = document.getElementById(id)
+    if (el) el.value = ''
+  })
+  const msg = document.getElementById('ctMsg')
+  if (msg) msg.style.display = 'none'
+
+  // merge seed + backend
+  const seed   = (SEED_CONTACTS[company] || []).map(c => ({ ...c, source: 'seed' }))
+  const remote = await fetchContacts(company)
+  const all    = [...seed, ...remote]
+
+  if (!all.length) {
+    list.innerHTML = `<div class="ct-empty">No contacts yet — be the first to add one below!</div>`
+    return
+  }
+
+  list.innerHTML = all.map(c => `
+    <div class="ct-card">
+      <div class="ct-card-top">
+        <div>
+          <div class="ct-name">${c.name}</div>
+          <div class="ct-role">${c.role || '—'}</div>
+        </div>
+        ${c.verified ? `<span class="ct-badge">✓ verified</span>` : `<span class="ct-badge ct-badge-unv">unverified</span>`}
+      </div>
+      <div class="ct-contact">
+        ${c.type === 'email'
+          ? `<a href="mailto:${c.contact}">✉ ${c.contact}</a>`
+          : `<a href="${c.contact}" target="_blank" rel="noopener">🔗 LinkedIn profile</a>`}
+      </div>
+    </div>
+  `).join('')
+}
+
+function closeContactsPanel() {
+  document.getElementById('contactsPanel')?.classList.remove('open')
+  document.body.style.overflow = ''
+}
+
+async function submitContactForm() {
+  const company = document.getElementById('contactsTitle')?.textContent
+  const name    = document.getElementById('ctName').value.trim()
+  const role    = document.getElementById('ctRole').value.trim()
+  const contact = document.getElementById('ctContact').value.trim()
+  const type    = document.getElementById('ctType').value
+  const msg     = document.getElementById('ctMsg')
+
+  if (!name || !contact) {
+    msg.textContent = 'Please fill in at least name and contact.'
+    msg.style.cssText = 'display:block;color:#ff6584'
+    return
+  }
+
+  try {
+    const r = await fetch(`${API}/api/contacts`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ company, name, role, contact, type }),
+    })
+    if (r.ok) {
+      msg.textContent = '✓ Submitted! It will appear after a quick review.'
+      msg.style.cssText = 'display:block;color:#43e8c0'
+    } else {
+      throw new Error()
+    }
+  } catch {
+    msg.textContent = 'Could not submit — try again.'
+    msg.style.cssText = 'display:block;color:#ff6584'
+  }
+}
+
 
 // ============================================================
 //  EMAIL TEMPLATE GENERATOR
@@ -1613,10 +1845,204 @@ function closeEmailModal() {
       text-decoration:none; transition:background 0.2s; white-space:nowrap;
     }
     .linkedin-btn:hover { background:rgba(10,102,194,0.22); }
-    .sponsor-card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:6px; }
+    .sponsor-card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:6px; gap:6px; flex-wrap:wrap; }
+    .contacts-btn {
+      display:inline-flex; align-items:center; gap:4px;
+      background:rgba(255,183,77,0.1); color:#ffb74d;
+      border:1px solid rgba(255,183,77,0.25); padding:3px 9px;
+      border-radius:6px; font-size:10px; font-weight:500; cursor:pointer;
+      transition:background 0.2s; white-space:nowrap;
+    }
+    .contacts-btn:hover { background:rgba(255,183,77,0.2); }
+
+    /* ── Sponsor search view ── */
+    #sponsorSearchView { display:none; padding:0 0 40px; }
+    #sponsorSearchView.active { display:block; }
+    .ss-search-wrap { position:relative; margin-bottom:24px; }
+    #ssInput {
+      width:100%; background:#1a1a24; border:1px solid rgba(255,255,255,0.1);
+      border-radius:14px; padding:14px 48px 14px 18px; color:#f0eff8;
+      font-family:'DM Sans',sans-serif; font-size:15px; outline:none;
+      transition:border-color 0.2s; box-sizing:border-box;
+    }
+    #ssInput:focus { border-color:rgba(108,99,255,0.5); }
+    .ss-search-icon {
+      position:absolute; right:16px; top:50%; transform:translateY(-50%);
+      color:#7c7b8a; font-size:18px; pointer-events:none;
+    }
+    .ss-hint { padding:40px 0; text-align:center; color:var(--muted,#7c7b8a); font-size:14px; line-height:1.6; }
+    .ss-card {
+      background:#111118; border:1px solid rgba(255,255,255,0.07);
+      border-radius:16px; padding:20px; margin-bottom:14px; transition:border-color 0.2s;
+    }
+    .ss-card:hover { border-color:rgba(255,255,255,0.14); }
+    .ss-card-head {
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:12px; margin-bottom:14px; flex-wrap:wrap;
+    }
+    .ss-cname { font-size:16px; font-weight:700; color:#f0eff8; margin-bottom:3px; }
+    .ss-cmeta { font-size:12px; color:#7c7b8a; }
+    .ss-card-actions { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .ss-contacts-btn {
+      display:inline-flex; align-items:center; gap:4px;
+      background:rgba(255,183,77,0.1); color:#ffb74d;
+      border:1px solid rgba(255,183,77,0.25); padding:4px 10px;
+      border-radius:7px; font-size:11px; font-weight:500; cursor:pointer; transition:background 0.2s;
+    }
+    .ss-contacts-btn:hover { background:rgba(255,183,77,0.2); }
+    .ss-rows { display:flex; flex-direction:column; gap:6px; }
+    .ss-row {
+      display:flex; align-items:center; gap:10px; padding:8px 12px;
+      border-radius:10px; background:rgba(255,255,255,0.03); cursor:pointer;
+      transition:background 0.15s; flex-wrap:wrap;
+    }
+    .ss-row:hover { background:rgba(255,255,255,0.07); }
+    .ss-col  { font-size:12px; font-weight:700; min-width:40px; }
+    .ss-fest { font-size:12px; color:#c8c7d8; flex:1; }
+    .ss-yr   { font-size:11px; color:#7c7b8a; }
+    .ss-toggle-btn {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(108,99,255,0.1); color:#a09aff;
+      border:1px solid rgba(108,99,255,0.25); padding:8px 16px;
+      border-radius:10px; font-family:'DM Sans',sans-serif; font-size:13px;
+      font-weight:500; cursor:pointer; transition:background 0.2s; margin-bottom:20px;
+    }
+    .ss-toggle-btn:hover { background:rgba(108,99,255,0.2); }
+
+    /* ── Contacts slide panel ── */
+    #contactsPanel {
+      position:fixed; top:0; right:-440px; width:420px; max-width:100vw;
+      height:100vh; background:#0e0e16; border-left:1px solid rgba(255,255,255,0.09);
+      z-index:10000; overflow-y:auto; transition:right 0.3s ease;
+      padding:28px 24px; box-sizing:border-box;
+    }
+    #contactsPanel.open { right:0; }
+    .ct-backdrop {
+      display:none; position:fixed; inset:0; z-index:9999;
+      background:rgba(0,0,0,0.5); backdrop-filter:blur(3px);
+    }
+    .ct-backdrop.open { display:block; }
+    .ct-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+    .ct-header h3 { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:#f0eff8; }
+    .ct-close {
+      background:rgba(255,255,255,0.06); border:none; color:#7c7b8a;
+      width:30px; height:30px; border-radius:8px; cursor:pointer; font-size:15px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .ct-close:hover { background:rgba(255,255,255,0.12); color:#f0eff8; }
+    .ct-subtitle { font-size:12px; color:#7c7b8a; margin-bottom:20px; }
+    .ct-loading, .ct-empty { padding:24px 0; font-size:13px; color:#7c7b8a; text-align:center; }
+    .ct-card {
+      background:#1a1a24; border:1px solid rgba(255,255,255,0.07);
+      border-radius:12px; padding:14px 16px; margin-bottom:10px;
+    }
+    .ct-card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px; }
+    .ct-name { font-size:14px; font-weight:600; color:#f0eff8; }
+    .ct-role { font-size:12px; color:#7c7b8a; margin-top:2px; }
+    .ct-badge {
+      font-size:10px; font-weight:600; padding:2px 7px; border-radius:5px;
+      background:rgba(67,232,192,0.12); color:#43e8c0; white-space:nowrap;
+    }
+    .ct-badge-unv { background:rgba(255,255,255,0.07); color:#7c7b8a; }
+    .ct-contact { font-size:12px; margin-top:8px; }
+    .ct-contact a { color:#a09aff; text-decoration:none; word-break:break-all; }
+    .ct-contact a:hover { text-decoration:underline; }
+    .ct-divider { border:none; border-top:1px solid rgba(255,255,255,0.07); margin:20px 0; }
+    .ct-section-title {
+      font-size:12px; font-weight:600; color:#7c7b8a;
+      text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;
+    }
+    .ct-form-field { margin-bottom:10px; }
+    .ct-form-field label { display:block; font-size:11px; color:#7c7b8a; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.04em; }
+    .ct-form-field input, .ct-form-field select {
+      width:100%; background:#111118; border:1px solid rgba(255,255,255,0.08);
+      border-radius:9px; padding:9px 12px; color:#f0eff8;
+      font-family:'DM Sans',sans-serif; font-size:13px; outline:none;
+      box-sizing:border-box; transition:border-color 0.2s;
+    }
+    .ct-form-field input:focus, .ct-form-field select:focus { border-color:rgba(108,99,255,0.45); }
+    .ct-form-field select option { background:#1a1a24; }
+    .ct-submit-btn {
+      width:100%; padding:10px; background:rgba(108,99,255,0.15); color:#a09aff;
+      border:1px solid rgba(108,99,255,0.3); border-radius:10px;
+      font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600;
+      cursor:pointer; margin-top:4px; transition:background 0.2s;
+    }
+    .ct-submit-btn:hover { background:rgba(108,99,255,0.25); }
+    #ctMsg { font-size:12px; margin-top:8px; display:none; }
   `
   document.head.appendChild(s)
 
+  // ── Sponsor search toggle + view — injected before #collegesGrid ──
+  const grid = document.getElementById('collegesGrid')
+  if (grid) {
+    grid.insertAdjacentHTML('beforebegin', `
+      <button class="ss-toggle-btn" id="ssToggleBtn" onclick="toggleSponsorSearch(this)">
+        🔍 Search sponsors
+      </button>
+      <div id="sponsorSearchView">
+        <div class="ss-search-wrap">
+          <input id="ssInput" type="text" placeholder="e.g. Razorpay, boAt, Nykaa, Decathlon…"
+            oninput="doSponsorSearch()" autocomplete="off" spellcheck="false">
+          <span class="ss-search-icon">🔍</span>
+        </div>
+        <div id="ssResults">
+          <div class="ss-hint">Start typing a company name — searches across every college &amp; fest</div>
+        </div>
+      </div>
+    `)
+  }
+
+  // ── Contacts panel + backdrop ──
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="ct-backdrop" id="ctBackdrop" onclick="closeContactsPanel()"></div>
+    <div id="contactsPanel">
+      <div class="ct-header">
+        <h3 id="contactsTitle">Company</h3>
+        <button class="ct-close" onclick="closeContactsPanel()">✕</button>
+      </div>
+      <div class="ct-subtitle">Known marketing &amp; sponsorship contacts</div>
+      <div id="contactsList"></div>
+      <hr class="ct-divider">
+      <div class="ct-section-title">➕ Submit a contact</div>
+      <p style="font-size:12px;color:#7c7b8a;margin-bottom:14px;line-height:1.6">
+        Know someone at this company? Add their details — it helps every fest committee.
+        Contacts are reviewed before going live.
+      </p>
+      <div class="ct-form-field">
+        <label>Full name *</label>
+        <input id="ctName" type="text" placeholder="e.g. Priya Sharma">
+      </div>
+      <div class="ct-form-field">
+        <label>Role / title</label>
+        <input id="ctRole" type="text" placeholder="e.g. Head of Brand Partnerships">
+      </div>
+      <div class="ct-form-field">
+        <label>Contact type</label>
+        <select id="ctType">
+          <option value="email">Email address</option>
+          <option value="linkedin">LinkedIn URL</option>
+        </select>
+      </div>
+      <div class="ct-form-field">
+        <label>Email / LinkedIn URL *</label>
+        <input id="ctContact" type="text" placeholder="priya@company.com or linkedin.com/in/…">
+      </div>
+      <button class="ct-submit-btn" onclick="submitContactForm()">Submit contact</button>
+      <div id="ctMsg"></div>
+    </div>
+  `)
+
+  // keep backdrop in sync with panel open state
+  const cp = document.getElementById('contactsPanel')
+  if (cp) {
+    new MutationObserver(() => {
+      const isOpen = cp.classList.contains('open')
+      document.getElementById('ctBackdrop')?.classList.toggle('open', isOpen)
+    }).observe(cp, { attributes: true, attributeFilter: ['class'] })
+  }
+
+  // ── Email modal ──
   document.body.insertAdjacentHTML('beforeend', `
     <div class="fn-overlay" id="emailOverlay" onclick="closeEmailModal()">
       <div class="fn-modal" onclick="event.stopPropagation()">
