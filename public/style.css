@@ -860,3 +860,4 @@
     .ss-card-head { flex-direction: column; }
     .ss-card-actions { width: 100%; justify-content: flex-start; }
   }
+  .sponsor-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }

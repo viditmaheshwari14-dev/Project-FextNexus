@@ -22,6 +22,7 @@ const COLLEGES = [
 // ============================================================
 
 
+
 const FEST_DATA = {
 
   // ── DTU ──────────────────────────────────────────────────────
@@ -30,357 +31,329 @@ const FEST_DATA = {
       id: 'engifest', name: 'Engifest', tagline: "DTU's flagship cultural & technical fest",
       icon: '🎭', iconBg: 'rgba(108,99,255,0.15)', footfall: '50,000+', sponsors_count: '100+',
       years: {
-        // ── 2025 — real data from Instagram research ──
+
+        // ── 2025 — verified from Instagram ──
         2025: [
-          { name: 'Paree',                   tier: 'title',     category: 'Feminine Hygiene' },
-          { name: 'OnePlus',                 tier: 'gold',      category: 'Consumer Electronics' },
-          { name: 'Nestle',                  tier: 'gold',      category: 'FMCG' },
-          { name: 'Denver',                  tier: 'silver',    category: 'Personal Care' },
-          { name: 'Real Fruit Power',        tier: 'silver',    category: 'Beverages' },
-          { name: 'JioSaavn',                tier: 'silver',    category: 'Music Streaming' },
-          { name: 'WinZo',                   tier: 'silver',    category: 'Gaming' },
-          { name: 'Alpino',                  tier: 'silver',    category: 'Health & Nutrition' },
-          { name: 'MuscleBlaze',             tier: 'silver',    category: 'Sports Nutrition' },
-          { name: 'Plum',                    tier: 'silver',    category: 'Beauty & Skincare' },
-          { name: 'Instax',                  tier: 'silver',    category: 'Photography' },
-          { name: 'Archies',                 tier: 'bronze',    category: 'Gifts & Stationery' },
-          { name: 'Tic Tac',                 tier: 'bronze',    category: 'Confectionery' },
-          { name: 'Ottogi India',            tier: 'bronze',    category: 'Food & Beverages' },
-          { name: 'Delhi Tourism',           tier: 'bronze',    category: 'Tourism' },
-          { name: 'Smaash',                  tier: 'bronze',    category: 'Entertainment' },
-          { name: 'StockGro',                tier: 'partner',   category: 'Stock Market Education' },
-          { name: 'AbhiBus',                 tier: 'partner',   category: 'Travel & Bus Booking' },
-          { name: 'Red FM 93.5',             tier: 'partner',   category: 'Radio' },
-          { name: 'Times Prime',             tier: 'partner',   category: 'Subscription Services' },
-          { name: 'Amar Ujala',              tier: 'partner',   category: 'Print Media' },
-          { name: 'Punjab Kesari',           tier: 'partner',   category: 'Print Media' },
-          { name: 'Prabhat Khabar',          tier: 'partner',   category: 'Print Media' },
-          { name: 'M2K Cinemas',             tier: 'partner',   category: 'Entertainment' },
-          { name: 'G3S Cinemas',             tier: 'partner',   category: 'Entertainment' },
-          { name: 'MovieTime',               tier: 'partner',   category: 'Entertainment' },
-          { name: 'Global Connect',          tier: 'associate', category: 'Telecom' },
-          { name: 'Detalytics',              tier: 'associate', category: 'Data Analytics' },
-          { name: 'Google Gemini',           tier: 'associate', category: 'AI & Technology' },
-          { name: 'Hilary Rhoda',            tier: 'associate', category: 'Fashion' },
-          { name: 'French Essence',          tier: 'associate', category: 'Perfumes & Fragrances' },
-          { name: 'Hashtag Eyewear',         tier: 'associate', category: 'Eyewear' },
-          { name: 'Tattoo Tatva',            tier: 'associate', category: 'Tattoo Studio' },
-          { name: 'Ningen',                  tier: 'associate', category: 'Skincare' },
-          { name: 'Good Seoul',              tier: 'associate', category: 'Korean Food & Lifestyle' },
-          { name: 'Dopamine Store',          tier: 'associate', category: 'Lifestyle & Fashion' },
-          { name: 'Chic Avenue',             tier: 'associate', category: 'Fashion' },
-          { name: '1.5 Degree',              tier: 'associate', category: 'Sustainable Fashion' },
-          { name: 'Yocto',                   tier: 'associate', category: 'Technology' },
-          { name: 'HX London',               tier: 'associate', category: 'Fashion' },
-          { name: 'Ocean',                   tier: 'associate', category: 'Beverages' },
-          { name: 'Damak',                   tier: 'associate', category: 'Food & Beverages' },
-          { name: 'Qoneqt',                  tier: 'associate', category: 'Social Networking' },
-          { name: 'Airattix',                tier: 'associate', category: 'Travel' },
-          { name: 'Fore School of Management', tier: 'associate', category: 'Education' },
-          { name: 'ARU',                     tier: 'associate', category: 'Education' },
-          { name: 'Khabar Fast',             tier: 'associate', category: 'Digital Media' },
-          { name: 'DS Group',                tier: 'associate', category: 'FMCG' },
-          { name: 'Ace Media',               tier: 'associate', category: 'Media' },
-          { name: 'Team BSR',                tier: 'associate', category: 'Sports' },
+          { name: 'Paree',              tier: 'title partner',           category: 'Feminine Hygiene' },
+          { name: 'OnePlus',            tier: 'gold sponsor',            category: 'Consumer Electronics' },
+          { name: 'Nestle',             tier: 'gold sponsor',            category: 'FMCG' },
+          { name: 'Denver',             tier: 'silver sponsor',          category: 'Personal Care' },
+          { name: 'Real Fruit Power',   tier: 'silver sponsor',          category: 'Beverages' },
+          { name: 'JioSaavn',           tier: 'silver sponsor',          category: 'Music Streaming' },
+          { name: 'WinZo',              tier: 'silver sponsor',          category: 'Gaming' },
+          { name: 'Alpino',             tier: 'silver sponsor',          category: 'Health & Nutrition' },
+          { name: 'MuscleBlaze',        tier: 'silver sponsor',          category: 'Sports Nutrition' },
+          { name: 'Plum',               tier: 'silver sponsor',          category: 'Beauty & Skincare' },
+          { name: 'Instax',             tier: 'silver sponsor',          category: 'Photography' },
+          { name: 'Archies',            tier: 'bronze sponsor',          category: 'Gifts & Stationery' },
+          { name: 'Tic Tac',           tier: 'bronze sponsor',          category: 'Confectionery' },
+          { name: 'Ottogi India',       tier: 'bronze sponsor',          category: 'Food & Beverages' },
+          { name: 'Delhi Tourism',      tier: 'bronze sponsor',          category: 'Tourism' },
+          { name: 'Smaash',             tier: 'bronze sponsor',          category: 'Entertainment' },
+          { name: 'StockGro',           tier: 'partner',                 category: 'Stock Market Education' },
+          { name: 'AbhiBus',            tier: 'partner',                 category: 'Travel & Bus Booking' },
+          { name: 'Red FM 93.5',        tier: 'radio partner',           category: 'Radio' },
+          { name: 'Times Prime',        tier: 'partner',                 category: 'Subscription Services' },
+          { name: 'Amar Ujala',         tier: 'media partner',           category: 'Print Media' },
+          { name: 'Punjab Kesari',      tier: 'media partner',           category: 'Print Media' },
+          { name: 'Prabhat Khabar',     tier: 'media partner',           category: 'Print Media' },
+          { name: 'M2K Cinemas',        tier: 'partner',                 category: 'Entertainment' },
+          { name: 'G3S Cinemas',        tier: 'partner',                 category: 'Entertainment' },
+          { name: 'MovieTime',          tier: 'partner',                 category: 'Entertainment' },
+          { name: 'Google Gemini',      tier: 'associate partner',       category: 'AI & Technology' },
+          { name: 'French Essence',     tier: 'associate partner',       category: 'Perfumes & Fragrances' },
+          { name: 'Hashtag Eyewear',    tier: 'associate partner',       category: 'Eyewear' },
+          { name: 'Ningen',             tier: 'associate partner',       category: 'Skincare' },
+          { name: 'Good Seoul',         tier: 'associate partner',       category: 'Korean Food & Lifestyle' },
+          { name: 'DS Group',           tier: 'associate partner',       category: 'FMCG' },
+          { name: 'Ace Media',          tier: 'associate partner',       category: 'Media' },
         ],
-        // ── 2024 — real data from Instagram research ──
+
+        // ── 2024 — verified from Instagram ──
         2024: [
-          { name: 'Philips India',           tier: 'title',     category: 'Consumer Electronics' },
-          { name: 'Delhi Capitals',          tier: 'gold',      category: 'Sports (IPL Team)' },
-          { name: 'Instax',                  tier: 'gold',      category: 'Photography' },
-          { name: 'Castrol',                 tier: 'gold',      category: 'Lubricants & Automotive' },
-          { name: 'Too Yumm',                tier: 'silver',    category: 'Snacks & FMCG' },
-          { name: 'French Essence',          tier: 'silver',    category: 'Perfumes & Fragrances' },
-          { name: 'Tattoo Tatva',            tier: 'silver',    category: 'Tattoo Studio' },
-          { name: 'Sparx',                   tier: 'silver',    category: 'Footwear' },
-          { name: 'Plum',                    tier: 'silver',    category: 'Beauty & Skincare' },
-          { name: 'Chaupal',                 tier: 'silver',    category: 'OTT Platform' },
-          { name: 'Safe Express',            tier: 'silver',    category: 'Logistics' },
-          { name: 'Punjab Kesari',           tier: 'silver',    category: 'Print Media' },
-          { name: 'Next IAS',                tier: 'silver',    category: 'UPSC Coaching' },
-          { name: 'M2K Cinemas',             tier: 'partner',   category: 'Entertainment' },
-          { name: 'Red FM 93.5',             tier: 'partner',   category: 'Radio' },
-          { name: 'Day Zero',                tier: 'partner',   category: 'Events & Entertainment' },
-          { name: 'Impresiot',               tier: 'partner',   category: 'Events Management' },
-          { name: 'Groove Nexus',            tier: 'partner',   category: 'Music & Events' },
-          { name: 'VYLD',                    tier: 'associate', category: 'Youth Lifestyle' },
-          { name: 'Fleye',                   tier: 'associate', category: 'Eyewear' },
-          { name: 'SAM',                     tier: 'associate', category: 'Technology' },
-          { name: 'Guitar Music Shop',       tier: 'associate', category: 'Music Instruments' },
-          { name: 'Algocs',                  tier: 'associate', category: 'Algo Trading' },
-          { name: 'AlgoQuant',               tier: 'associate', category: 'Quantitative Finance' },
-          { name: 'ACT',                     tier: 'associate', category: 'Broadband & Internet' },
-          { name: 'TVG',                     tier: 'associate', category: 'Media' },
-          { name: 'Apna Adda',               tier: 'associate', category: 'Coworking & Social' },
-          { name: 'Bungee',                  tier: 'associate', category: 'Fintech' },
-          { name: 'Qelica',                  tier: 'associate', category: 'Technology' },
-          { name: '2.oh',                    tier: 'associate', category: 'Fashion' },
-          { name: 'Makeο Toothsi',           tier: 'associate', category: 'Dental Care' },
-          { name: 'Snap4Me',                 tier: 'associate', category: 'Photography' },
-          { name: 'Love Earth',              tier: 'associate', category: 'Sustainable Products' },
-          { name: 'Fever',                   tier: 'associate', category: 'Events & Entertainment' },
+          { name: 'Philips India',      tier: 'title partner',           category: 'Consumer Electronics' },
+          { name: 'Delhi Capitals',     tier: 'gold sponsor',            category: 'Sports (IPL Team)' },
+          { name: 'Instax',             tier: 'gold sponsor',            category: 'Photography' },
+          { name: 'Castrol',            tier: 'gold sponsor',            category: 'Lubricants & Automotive' },
+          { name: 'Too Yumm',           tier: 'silver sponsor',          category: 'Snacks & FMCG' },
+          { name: 'French Essence',     tier: 'silver sponsor',          category: 'Perfumes & Fragrances' },
+          { name: 'Tattoo Tatva',       tier: 'silver sponsor',          category: 'Tattoo Studio' },
+          { name: 'Sparx',              tier: 'silver sponsor',          category: 'Footwear' },
+          { name: 'Plum',               tier: 'silver sponsor',          category: 'Beauty & Skincare' },
+          { name: 'Chaupal',            tier: 'silver sponsor',          category: 'OTT Platform' },
+          { name: 'Safe Express',       tier: 'silver sponsor',          category: 'Logistics' },
+          { name: 'Punjab Kesari',      tier: 'silver sponsor',          category: 'Print Media' },
+          { name: 'Next IAS',           tier: 'silver sponsor',          category: 'UPSC Coaching' },
+          { name: 'M2K Cinemas',        tier: 'partner',                 category: 'Entertainment' },
+          { name: 'Red FM 93.5',        tier: 'radio partner',           category: 'Radio' },
+          { name: 'Day Zero',           tier: 'partner',                 category: 'Events & Entertainment' },
+          { name: 'Impresiot',          tier: 'outreach partner',        category: 'Events Management' },
+          { name: 'Groove Nexus',       tier: 'partner',                 category: 'Music & Events' },
+          { name: 'Algocs',             tier: 'associate partner',       category: 'Algo Trading' },
+          { name: 'Qelica',             tier: 'associate partner',       category: 'Technology' },
+          { name: 'Apna Adda',          tier: 'associate partner',       category: 'Coworking & Social' },
         ],
+
+        // ── 2023 — verified ──
         2023: [
-          { name: 'Airtel',    tier: 'title',     category: 'Telecom' },
-          { name: 'Paytm',     tier: 'gold',      category: 'Fintech' },
-          { name: 'Zomato',    tier: 'gold',      category: 'Food Delivery' },
-          { name: 'Samsung',   tier: 'silver',    category: 'Electronics' },
-          { name: 'Ola',       tier: 'silver',    category: 'Mobility' },
-          { name: 'Puma',      tier: 'bronze',    category: 'Sportswear' },
-          { name: 'Spotify',   tier: 'partner',   category: 'Music Streaming' },
-          { name: 'Cred',      tier: 'associate', category: 'Fintech' },
-        ],
-        2022: [
-          { name: 'Dream11',   tier: 'title',     category: 'Fantasy Sports' },
-          { name: 'Jio',       tier: 'gold',      category: 'Telecom' },
-          { name: "BYJU'S",    tier: 'silver',    category: 'EdTech' },
-          { name: 'RedBull',   tier: 'partner',   category: 'Beverages' },
-          { name: 'Noise',     tier: 'associate', category: 'Electronics' },
-        ],
-        2021: [
-          { name: "BYJU'S",    tier: 'title',   category: 'EdTech' },
-          { name: 'Unacademy', tier: 'gold',    category: 'EdTech' },
-          { name: 'Flipkart',  tier: 'silver',  category: 'E-commerce' },
-          { name: 'Zomato',    tier: 'partner', category: 'Food Delivery' },
+          { name: 'Reel Star',          tier: 'title partner',           category: 'Entertainment' },
+          { name: 'adda52.com',         tier: 'registration partner',    category: 'Online Gaming' },
+          { name: 'TOO YUMM!',          tier: 'snacking partner',        category: 'Snacks & FMCG' },
+          { name: 'Instax',             tier: 'moments partner',         category: 'Photography' },
+          { name: 'Paree',              tier: 'hygiene partner',         category: 'Feminine Hygiene' },
+          { name: 'Qelica',             tier: 'gifting partner',         category: 'Technology' },
+          { name: 'OLORIO',             tier: 'gifting partner',         category: 'Gifts & Lifestyle' },
+          { name: 'Naturali',           tier: 'beauty partner',          category: 'Beauty & Personal Care' },
+          { name: 'Creo',               tier: 'design partner',          category: 'Design' },
+          { name: 'Helios',             tier: 'shoecare partner',        category: 'Footwear Care' },
+          { name: 'PHY',                tier: 'vibe partner',            category: 'Lifestyle' },
+          { name: 'The Education Tree', tier: 'youth community partner', category: 'Education' },
+          { name: 'RED FM 93.5',        tier: 'radio partner',           category: 'Radio' },
+          { name: 'Amar Ujala',         tier: 'online media partner',    category: 'Print & Digital Media' },
+          { name: 'ED Times',           tier: 'blog partner',            category: 'Digital Media' },
+          { name: 'blogadda.com',       tier: 'blogger outreach partner',category: 'Blogging' },
+          { name: 'DU Assassins',       tier: 'digital media partner',   category: 'Digital Media' },
+          { name: "Woman's Era",        tier: 'digital media partner',   category: 'Digital Media' },
+          { name: 'Evepaper',           tier: 'digital media partner',   category: 'Digital Media' },
+          { name: 'Fantastic Delhi',    tier: 'digital media partner',   category: 'Digital Media' },
+          { name: 'INSIGHTONE',         tier: 'application partner',     category: 'Technology' },
+          { name: 'DELHITASTIC',        tier: 'digital media partner',   category: 'Digital Media' },
+          { name: 'Algocs',             tier: 'digital media partner',   category: 'Algo Trading' },
+          { name: 'The Indian Fever',   tier: 'digital media partner',   category: 'Digital Media' },
         ],
       },
     }],
+
     tech: [{
       id: 'invictus_dtu', name: 'Invictus', tagline: "DTU's annual technical festival",
       icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '20,000+', sponsors_count: '40+',
       years: {
+
+        // ── 2025 — verified from Instagram ──
         2025: [
-          { name: 'MATIKS.COM', tier:'gold', category:'Quant'     },
-          { name: 'Yocto',    tier: 'associate',     category: 'Medical' },
-          { name: 'KGEN', tier: 'gold',      category: 'Registration' },
-          { name: 'EA FC Delhi NCR',  tier: 'gold',      category: 'Gaming' },
-          { name: 'NSSS',  tier: 'silver',    category: 'Social Outreach' },
-          { name: 'Wayspire',    tier: 'partner',   category: 'upskilling' },
-          { name: 'GNK Jewellers', tier: 'associate', category: 'Jewellery' },
-          { name: 'Telerang', tier: 'associate', category: 'Work Readiness' },
-          { name: 'XTCY', tier: 'associate', category: 'Energy Drink' },
-          { name: 'Suzuki', tier: 'associate', category: 'Bike' },
-          { name: 'Freedo', tier: 'associate', category: 'Mobility' },
-          { name: 'SAFEXPRESS', tier: 'associate', category: 'Logistics' },
-          { name: 'Ace Media House', tier: 'associate', category: 'Management' },
-          { name: 'StockGro', tier: 'associate', category: 'Trading' },
-          { name: 'DD national', tier: 'associate', category: 'Coverage' },
-          { name: 'PCMB Memes', tier: 'associate', category: 'Media' },
-          { name: 'HT City', tier: 'associate', category: 'Media' },
-          { name: 'Fateh Education', tier: 'associate', category: 'Study Abroad' },
-          { name: 'Qualcomm', tier: 'gold', category: '' },
-          { name: 'amdocs', tier: 'gold', category: '' },
-          { name: 'HDFC BANKING', tier: 'associate', category: 'Bank' },
-          { name: 'Bank Of Baroda', tier: 'associate', category: 'Bank' },
-          { name: 'Aditya Birla', tier: 'associate', category: 'Multinational Conglomerate' },
-          { name: 'chess.com', tier: 'associate', category: 'Games' },
-          { name: 'Adobe', tier: 'associate', category: 'Technology' },
-          { name: 'GeeksforGeeks', tier: 'silver', category: 'EdTech' },
-          { name: 'Farmley', tier: 'associate', category: 'Snacks' },
-          { name: 'DS Group', tier: 'associate', category: 'Food' },
-          { name: 'Fresca', tier: 'associate', category: 'Beverage' },
-          { name: 'Jagran Josh', tier: 'associate', category: 'Media' },
-          { name: 'Hindustan Times', tier: 'associate', category: 'Media' },
-
-
+          { name: 'MATIKS.COM',      tier: 'gold sponsor',         category: 'Quant Trading' },
+          { name: 'Qualcomm',        tier: 'gold sponsor',         category: 'Semiconductors' },
+          { name: 'amdocs',          tier: 'gold sponsor',         category: 'Technology' },
+          { name: 'KGEN',            tier: 'gold sponsor',         category: 'Registration' },
+          { name: 'EA FC Delhi NCR', tier: 'gold sponsor',         category: 'Gaming' },
+          { name: 'GeeksforGeeks',   tier: 'silver sponsor',       category: 'EdTech' },
+          { name: 'NSSS',            tier: 'silver sponsor',       category: 'Social Outreach' },
+          { name: 'Yocto',           tier: 'associate partner',    category: 'Technology' },
+          { name: 'Wayspire',        tier: 'partner',              category: 'Upskilling' },
+          { name: 'GNK Jewellers',   tier: 'associate partner',    category: 'Jewellery' },
+          { name: 'Telerang',        tier: 'associate partner',    category: 'Work Readiness' },
+          { name: 'XTCY',            tier: 'associate partner',    category: 'Energy Drink' },
+          { name: 'Suzuki',          tier: 'associate partner',    category: 'Automobile' },
+          { name: 'Freedo',          tier: 'associate partner',    category: 'Mobility' },
+          { name: 'SAFEXPRESS',      tier: 'associate partner',    category: 'Logistics' },
+          { name: 'Ace Media House', tier: 'associate partner',    category: 'Media Management' },
+          { name: 'StockGro',        tier: 'associate partner',    category: 'Stock Market Education' },
+          { name: 'DD National',     tier: 'associate partner',    category: 'Media Coverage' },
+          { name: 'HT City',         tier: 'associate partner',    category: 'Media' },
+          { name: 'Fateh Education', tier: 'associate partner',    category: 'Study Abroad' },
+          { name: 'Adobe',           tier: 'associate partner',    category: 'Technology' },
+          { name: 'Bank Of Baroda',  tier: 'associate partner',    category: 'Banking' },
+          { name: 'chess.com',       tier: 'associate partner',    category: 'Gaming' },
+          { name: 'Farmley',         tier: 'associate partner',    category: 'Snacks' },
+          { name: 'Jagran Josh',     tier: 'associate partner',    category: 'Media' },
+          { name: 'Hindustan Times', tier: 'associate partner',    category: 'Media' },
         ],
+
+        // ── 2024 — verified ──
         2024: [
-          { name: 'Google',    tier: 'title',     category: 'Technology' },
-          { name: 'Microsoft', tier: 'gold',      category: 'Technology' },
-          { name: 'Flipkart',  tier: 'gold',      category: 'E-commerce' },
-          { name: 'Razorpay',  tier: 'silver',    category: 'Fintech' },
-          { name: 'GitHub',    tier: 'partner',   category: 'Dev Tools' },
-          { name: 'JetBrains', tier: 'associate', category: 'Dev Tools' },
+          { name: 'StockGro',         tier: 'trading sponsor',        category: 'Stock Market Education' },
+          { name: 'Revolt',           tier: 'mobility partner',       category: 'Electric Vehicles' },
+          { name: 'Groupme',          tier: 'communication partner',  category: 'Communication' },
+          { name: 'GeeksforGeeks',    tier: 'coding partner',         category: 'EdTech' },
+          { name: 'EaseMyTrip',       tier: 'travel partner',         category: 'Travel' },
+          { name: 'Ayouth Veda',      tier: 'gifting partner',        category: 'Gifts & Wellness' },
+          { name: 'Campus Fusion',    tier: 'organising partner',     category: 'Events' },
+          { name: 'Hive',             tier: 'hackathon partner',      category: 'Tech Community' },
+          { name: 'Adobe',            tier: 'generative AI partner',  category: 'Software' },
+          { name: 'IMPRESIOT MEDIA',  tier: 'outreach partner',       category: 'Media & Events' },
+          { name: 'GTech Learn',      tier: 'VR sponsor',             category: 'EdTech / VR' },
+          { name: 'Grovenexus',       tier: 'social media partner',   category: 'Social Media' },
         ],
+
+        // ── 2023 — verified ──
         2023: [
-          { name: 'Amazon',   tier: 'title',  category: 'Technology' },
-          { name: 'Flipkart', tier: 'gold',   category: 'E-commerce' },
-          { name: 'Postman',  tier: 'silver', category: 'Dev Tools' },
-          { name: 'Cred',     tier: 'bronze', category: 'Fintech' },
+          { name: 'Coding Ninjas',    tier: 'title sponsor',            category: 'EdTech' },
+          { name: 'Bank Of Baroda',   tier: 'co-title sponsor',         category: 'Banking' },
+          { name: 'H2O.ai',           tier: 'official AI partner',      category: 'Artificial Intelligence' },
+          { name: 'MOTILAL OSWAL',    tier: 'bulls & bear partner',     category: 'Stock Broking' },
+          { name: 'ROYAL ENFIELD',    tier: 'travel partner',           category: 'Motorcycles' },
+          { name: 'Unstop',           tier: 'registration partner',     category: 'Career & Competitions' },
+          { name: 'Chess.com',        tier: 'sporting partner',         category: 'Gaming' },
+          { name: 'CODECHEF',         tier: 'coding partner',           category: 'Competitive Programming' },
+          { name: 'EDGE METAVERSE',   tier: 'animation partner',        category: 'Metaverse & Animation' },
+          { name: 'Clovia',           tier: 'fashion partner',          category: 'Lingerie & Apparel' },
+          { name: 'Microgravity',     tier: 'gaming partner',           category: 'Gaming' },
+          { name: 'TradingView',      tier: 'trading partner',          category: 'Financial Tools' },
+          { name: 'Beardo',           tier: 'official grooming partner',category: "Men's Grooming" },
+          { name: 'iCreate',          tier: 'official pitchfork partner',category: 'Entrepreneurship' },
+          { name: 'JK Cement',        tier: 'innovation partner',       category: 'Infrastructure' },
+          { name: 'STUNHAUL',         tier: 'official gifting partner', category: 'Gifts' },
+          { name: 'All India Radio',  tier: 'official radio partner',   category: 'Radio' },
+          { name: 'blogadda.com',     tier: 'media partner',            category: 'Blogging' },
+          { name: 'ED Times',         tier: 'media partner',            category: 'Digital Media' },
+          { name: 'INTERVIEW BUDDY',  tier: 'technical partner',        category: 'Career Prep' },
+          { name: 'NoticeBard',       tier: 'media partner',            category: 'Digital Media' },
+          { name: 'TECH STORY',       tier: 'media partner',            category: 'Tech Media' },
+          { name: 'Youth Incorporated',tier:'media partner',            category: 'Digital Media' },
+          { name: 'MTV',              tier: 'official media partner',   category: 'Entertainment' },
+          { name: 'VIACOM 18',        tier: 'media partner',            category: 'Entertainment' },
+          { name: 'Amar Ujala',       tier: 'media partner',            category: 'Print & Digital Media' },
+          { name: 'SACH KAHOON',      tier: 'media partner',            category: 'Digital Media' },
+          { name: 'CAMPUS KARMA',     tier: 'media partner',            category: 'Digital Media' },
+          { name: 'IEEE STUDENTS',    tier: 'official spacs partner',   category: 'Engineering Community' },
+          { name: 'ROBOTICS INDIA',   tier: 'social media partner',     category: 'Robotics' },
+          { name: 'Sachi Shiksha',    tier: 'media partner',            category: 'Digital Media' },
         ],
       },
     }],
-    sports: [{
-      id: 'aahvahn', name: 'Aahvahn', tagline: "DTU's annual sports meet",
-      icon: '🏆', iconBg: 'rgba(255,183,77,0.12)', footfall: '8,000+', sponsors_count: 10,
-      years: {
-        2024: [
-          { name: 'Decathlon', tier: 'title',  category: 'Sporting Goods' },
-          { name: 'Puma',      tier: 'gold',   category: 'Sportswear' },
-          { name: 'Gatorade',  tier: 'silver', category: 'Beverages' },
-          { name: 'Nike',      tier: 'bronze', category: 'Sportswear' },
-        ],
-        2023: [
-          { name: 'Adidas',    tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
-        ],
-      },
-    }],
-  },   
-  // ── NSUT ─────────────────────────────────────────────────────
-  nsut: { 
-    cultural: [
-      {
-      id: 'moksha', name: 'Moksha', tagline: "NSUT's flagship annual cultural festival",
-      icon: '🎭', iconBg: 'rgba(255,101,132,0.15)', footfall: '50,000+', sponsors_count: "100+",
-      years: {
-        // ── 2025 — real data ──
-        2025: [
-          { name: 'Sparx',               tier: 'title',     category: 'Footwear' },
-          { name: 'Delhi Capitals',       tier: 'gold',      category: 'Sports (IPL Team)' },
-          { name: 'Rapido',               tier: 'gold',      category: 'Bike Taxi & Mobility' },
-          { name: 'Mars',                 tier: 'gold',      category: 'Confectionery & FMCG' },
-          { name: 'PNB',                  tier: 'gold',      category: 'Banking' },
-          { name: 'Paree',                tier: 'silver',    category: 'Feminine Hygiene' },
-          { name: 'Ningen',               tier: 'silver',    category: 'Skincare' },
-          { name: 'Nescafe',              tier: 'silver',    category: 'Beverages' },
-          { name: 'GAIL',                 tier: 'silver',    category: 'Oil & Gas (PSU)' },
-          { name: 'Bharat Petroleum',     tier: 'silver',    category: 'Oil & Gas (PSU)' },
-          { name: 'Plum Body Lovin',      tier: 'silver',    category: 'Beauty & Skincare' },
-          { name: 'Hilary Rhoda',         tier: 'silver',    category: 'Fashion' },
-          { name: 'French Essence',       tier: 'silver',    category: 'Perfumes & Fragrances' },
-          { name: 'Snitch',               tier: 'silver',    category: 'Men\'s Fashion' },
-          { name: 'Trends',               tier: 'silver',    category: 'Fashion Retail' },
-          { name: 'Chase Protein',        tier: 'silver',    category: 'Sports Nutrition' },
-          { name: 'Oatey',                tier: 'bronze',    category: 'Plumbing Products' },
-          { name: 'Yostar',               tier: 'bronze',    category: 'Gaming' },
-          { name: 'Jolen',                tier: 'bronze',    category: 'Beauty & Skincare' },
-          { name: 'Vision IAS',           tier: 'bronze',    category: 'UPSC Coaching' },
-          { name: 'Amar Ujala',           tier: 'partner',   category: 'Print Media' },
-          { name: 'Eazydiner',            tier: 'partner',   category: 'Restaurant Booking' },
-          { name: 'BoostGrad',            tier: 'partner',   category: 'Career & EdTech' },
-          { name: 'Throttle Tribe',       tier: 'partner',   category: 'Biking Community' },
-          { name: 'Muddy Water',          tier: 'partner',   category: 'Beverages' },
-          { name: 'Mindmill',             tier: 'associate', category: 'Mental Health & Wellness' },
-          { name: 'Detalytics',           tier: 'associate', category: 'Data Analytics' },
-          { name: 'Viberse',              tier: 'associate', category: 'Social App' },
-          { name: 'Clova',                tier: 'associate', category: 'Technology' },
-          { name: 'O Hi',                 tier: 'associate', category: 'Social App' },
-          { name: 'IFA',                  tier: 'associate', category: 'Finance & Investment' },
-          { name: 'Nuke',                 tier: 'associate', category: 'Technology' },
-          { name: 'Blood Connect',        tier: 'associate', category: 'NGO / Blood Donation' },
-          { name: 'Qadar Daan',           tier: 'associate', category: 'NGO' },
-          { name: 'Herody',               tier: 'associate', category: 'Electric Vehicles' },
-        ],
-        // ── 2024 — real data ──
-        2024: [
-          { name: 'Philips',              tier: 'title',     category: 'Consumer Electronics' },
-          { name: 'Delhi Capitals',       tier: 'gold',      category: 'Sports (IPL Team)' },
-          { name: 'Myntra',               tier: 'gold',      category: 'Fashion E-commerce' },
-          { name: 'Hero',                 tier: 'gold',      category: 'Two-Wheelers' },
-          { name: 'GAIL',                 tier: 'gold',      category: 'Oil & Gas (PSU)' },
-          { name: 'Gold\'s Gym',          tier: 'silver',    category: 'Fitness & Gym' },
-          { name: 'Storia',               tier: 'silver',    category: 'Beverages' },
-          { name: 'Max Protein',          tier: 'silver',    category: 'Sports Nutrition' },
-          { name: 'Himalaya Herbals',     tier: 'silver',    category: 'Personal Care' },
-          { name: 'Sparx',                tier: 'silver',    category: 'Footwear' },
-          { name: 'Bingo',                tier: 'silver',    category: 'Snacks' },
-          { name: 'Gigabyte',             tier: 'silver',    category: 'Computer Hardware' },
-          { name: 'Boult Audio',          tier: 'silver',    category: 'Audio Electronics' },
-          { name: 'Stock Edge',           tier: 'silver',    category: 'Stock Market Education' },
-          { name: 'Next IAS',             tier: 'silver',    category: 'UPSC Coaching' },
-          { name: 'Vision IAS',           tier: 'silver',    category: 'UPSC Coaching' },
-          { name: 'Freedo',               tier: 'bronze',    category: 'EV Rentals' },
-          { name: 'Bauli',                tier: 'bronze',    category: 'Bakery & Confectionery' },
-          { name: 'Bonkers Corner',       tier: 'bronze',    category: 'Fashion' },
-          { name: 'Crispee Snacks',       tier: 'bronze',    category: 'Snacks' },
-          { name: 'Omdocs',               tier: 'bronze',    category: 'Healthcare' },
-          { name: 'Day Zero',             tier: 'partner',   category: 'Events & Entertainment' },
-          { name: 'Groove Nexus',         tier: 'partner',   category: 'Music & Events' },
-          { name: 'Hover Robotix',        tier: 'partner',   category: 'Robotics & EdTech' },
-          { name: 'Qelica',               tier: 'associate', category: 'Technology' },
-          { name: 'Bungee',               tier: 'associate', category: 'Fintech' },
-          { name: 'Bitget',               tier: 'associate', category: 'Crypto Exchange' },
-          { name: 'SSPS Global',          tier: 'associate', category: 'Education' },
-          { name: 'AppWars',              tier: 'associate', category: 'Gaming' },
-          { name: 'Maltiplai',            tier: 'associate', category: 'Fintech' },
-          { name: 'HypedIN',              tier: 'associate', category: 'Social Commerce' },
-          { name: 'MentorX',             tier: 'associate', category: 'Career Mentorship' },
-          { name: 'RevUp',                tier: 'associate', category: 'Automotive' },
-          { name: 'LUCR8',                tier: 'associate', category: 'Fintech' },
-        ],
-        // ── 2023 — real data ──
-        2023: [
-          { name: 'Central Bank of India', tier: 'title',    category: 'Banking' },
-          { name: 'Coding Ninjas',         tier: 'gold',     category: 'EdTech' },
-          { name: 'Manforce',              tier: 'gold',     category: 'Personal Care & FMCG' },
-          { name: 'Gold\'s Gym',           tier: 'gold',     category: 'Fitness & Gym' },
-          { name: 'Paytm',                 tier: 'silver',   category: 'Fintech' },
-          { name: 'Top One Percent',       tier: 'silver',   category: 'EdTech' },
-          { name: 'Fan2Play',              tier: 'silver',   category: 'Fantasy Sports' },
-          { name: 'IGL',                   tier: 'silver',   category: 'Gas Distribution (PSU)' },
-          { name: 'Instax',                tier: 'silver',   category: 'Photography' },
-          { name: 'Philips',               tier: 'silver',   category: 'Consumer Electronics' },
-          { name: 'Oatey',                 tier: 'silver',   category: 'Plumbing Products' },
-          { name: 'Beardo',                tier: 'silver',   category: 'Men\'s Grooming' },
-          { name: 'Clovia',                tier: 'silver',   category: 'Lingerie & Apparel' },
-          { name: 'Insights IAS',          tier: 'silver',   category: 'UPSC Coaching' },
-          { name: 'Freedo',                tier: 'bronze',   category: 'EV Rentals' },
-          { name: 'Course Hero',           tier: 'bronze',   category: 'EdTech' },
-          { name: 'Fitnastic',             tier: 'bronze',   category: 'Fitness' },
-          { name: 'Union Bank',            tier: 'bronze',   category: 'Banking' },
-          { name: 'Manipal Hospitals',     tier: 'bronze',   category: 'Healthcare' },
-          { name: 'Unirely',               tier: 'partner',  category: 'EdTech' },
-          { name: 'Hunch',                 tier: 'partner',  category: 'Social App' },
-          { name: 'Cotton Candy',          tier: 'partner',  category: 'Fashion' },
-          { name: 'Algocs',                tier: 'associate',category: 'Algo Trading' },
-          { name: 'Anita International',   tier: 'associate',category: 'Jewellery' },
-          { name: 'BeReal',                tier: 'associate',category: 'Social Media' },
-          { name: 'KIARA',                 tier: 'associate',category: 'Fashion' },
-          { name: 'Welcomhotel',           tier: 'associate',category: 'Hospitality' },
-          { name: 'Benling',               tier: 'associate',category: 'Electric Vehicles' },
-          { name: 'Red Bull',              tier: 'associate',category: 'Energy Drinks' },
-          { name: 'Jindal Steel and Power',tier: 'associate',category: 'Steel & Power' },
-          { name: 'Poster Laga',           tier: 'associate',category: 'Advertising' },
-        ],
-      },
-    },
-     {
-      id: 'resonanz', name: 'Resonanz', tagline: "NSUT's annual intra college cultural festival",
-      icon: '🎭', iconBg: 'rgba(128, 49, 64, 0.15)', footfall: '30,000+', sponsors_count: 40,
-      years: {
-        2025: [
-           { name: 'Instax',     tier: 'silver',   category: 'Photography' },
-           { name: 'Plum Body Lovin', tier: 'silver',  category: 'Beauty & Skincare' },
-           { name: 'Vision IAS',      tier: 'bronze',    category: 'UPSC Coaching' },
-           { name: 'GAIL',            tier: 'gold',      category: 'Oil & Gas (PSU)' },
-           { name: 'Amar Ujala',      tier: 'bronze',    category: 'Print Media' },
-           { name: 'Tattoo Tatva',     tier: 'silver',    category: 'Tattoo Studio' },
-        ],
-    },
   },
 
-  ], 
-    tech: [{
-      id: 'innovision', name: 'Innovision', tagline: "NSUT's annual technical symposium",
-      icon: '⚙️', iconBg: 'rgba(34, 97, 81, 0.12)', footfall: '12,000+', sponsors_count: 14,
-      years: {
-        2024: [
-          { name: 'Microsoft', tier: 'title',     category: 'Technology' },
-          { name: 'IBM',       tier: 'gold',      category: 'IT Services' },
-          { name: 'Razorpay',  tier: 'silver',    category: 'Fintech' },
-          { name: 'GitHub',    tier: 'partner',   category: 'Dev Tools' },
-          { name: 'Postman',   tier: 'associate', category: 'Dev Tools' },
-        ],
-        2023: [
-          { name: 'Google',   tier: 'title',  category: 'Technology' },
-          { name: 'Infosys',  tier: 'gold',   category: 'IT Services' },
-          { name: 'Juspay',   tier: 'silver', category: 'Fintech' },
-        ],
+  // ── NSUT ─────────────────────────────────────────────────────
+  nsut: {
+    cultural: [
+      {
+        id: 'moksha', name: 'Moksha', tagline: "NSUT's flagship annual cultural festival",
+        icon: '🎭', iconBg: 'rgba(255,101,132,0.15)', footfall: '50,000+', sponsors_count: '100+',
+        years: {
+
+          // ── 2025 — verified from Instagram ──
+          2025: [
+            { name: 'Sparx',             tier: 'title partner',      category: 'Footwear' },
+            { name: 'Delhi Capitals',    tier: 'gold sponsor',       category: 'Sports (IPL Team)' },
+            { name: 'Rapido',            tier: 'gold sponsor',       category: 'Bike Taxi & Mobility' },
+            { name: 'Mars',              tier: 'gold sponsor',       category: 'Confectionery & FMCG' },
+            { name: 'PNB',               tier: 'gold sponsor',       category: 'Banking' },
+            { name: 'Paree',             tier: 'silver sponsor',     category: 'Feminine Hygiene' },
+            { name: 'Ningen',            tier: 'silver sponsor',     category: 'Skincare' },
+            { name: 'Nescafe',           tier: 'silver sponsor',     category: 'Beverages' },
+            { name: 'GAIL',              tier: 'silver sponsor',     category: 'Oil & Gas (PSU)' },
+            { name: 'Bharat Petroleum',  tier: 'silver sponsor',     category: 'Oil & Gas (PSU)' },
+            { name: 'Plum Body Lovin',   tier: 'silver sponsor',     category: 'Beauty & Skincare' },
+            { name: 'Hilary Rhoda',      tier: 'silver sponsor',     category: 'Fashion' },
+            { name: 'French Essence',    tier: 'silver sponsor',     category: 'Perfumes & Fragrances' },
+            { name: 'Snitch',            tier: 'silver sponsor',     category: "Men's Fashion" },
+            { name: 'Trends',            tier: 'silver sponsor',     category: 'Fashion Retail' },
+            { name: 'Chase Protein',     tier: 'silver sponsor',     category: 'Sports Nutrition' },
+            { name: 'Oatey',             tier: 'bronze sponsor',     category: 'Plumbing Products' },
+            { name: 'Yostar',            tier: 'bronze sponsor',     category: 'Gaming' },
+            { name: 'Jolen',             tier: 'bronze sponsor',     category: 'Beauty & Skincare' },
+            { name: 'Vision IAS',        tier: 'bronze sponsor',     category: 'UPSC Coaching' },
+            { name: 'Amar Ujala',        tier: 'media partner',      category: 'Print Media' },
+            { name: 'Eazydiner',         tier: 'partner',            category: 'Restaurant Booking' },
+            { name: 'BoostGrad',         tier: 'partner',            category: 'Career & EdTech' },
+            { name: 'Mindmill',          tier: 'associate partner',  category: 'Mental Health & Wellness' },
+            { name: 'Detalytics',        tier: 'associate partner',  category: 'Data Analytics' },
+            { name: 'Blood Connect',     tier: 'associate partner',  category: 'NGO / Blood Donation' },
+          ],
+
+          // ── 2024 — verified from Instagram ──
+          2024: [
+            { name: 'Philips',           tier: 'title partner',      category: 'Consumer Electronics' },
+            { name: 'Delhi Capitals',    tier: 'gold sponsor',       category: 'Sports (IPL Team)' },
+            { name: 'Myntra',            tier: 'gold sponsor',       category: 'Fashion E-commerce' },
+            { name: 'Hero',              tier: 'gold sponsor',       category: 'Two-Wheelers' },
+            { name: 'GAIL',              tier: 'gold sponsor',       category: 'Oil & Gas (PSU)' },
+            { name: "Gold's Gym",        tier: 'silver sponsor',     category: 'Fitness & Gym' },
+            { name: 'Storia',            tier: 'silver sponsor',     category: 'Beverages' },
+            { name: 'Max Protein',       tier: 'silver sponsor',     category: 'Sports Nutrition' },
+            { name: 'Himalaya Herbals',  tier: 'silver sponsor',     category: 'Personal Care' },
+            { name: 'Sparx',             tier: 'silver sponsor',     category: 'Footwear' },
+            { name: 'Bingo',             tier: 'silver sponsor',     category: 'Snacks' },
+            { name: 'Gigabyte',          tier: 'silver sponsor',     category: 'Computer Hardware' },
+            { name: 'Boult Audio',       tier: 'silver sponsor',     category: 'Audio Electronics' },
+            { name: 'Stock Edge',        tier: 'silver sponsor',     category: 'Stock Market Education' },
+            { name: 'Next IAS',          tier: 'silver sponsor',     category: 'UPSC Coaching' },
+            { name: 'Vision IAS',        tier: 'silver sponsor',     category: 'UPSC Coaching' },
+            { name: 'Freedo',            tier: 'bronze sponsor',     category: 'EV Rentals' },
+            { name: 'Day Zero',          tier: 'partner',            category: 'Events & Entertainment' },
+            { name: 'Groove Nexus',      tier: 'partner',            category: 'Music & Events' },
+            { name: 'Hover Robotix',     tier: 'partner',            category: 'Robotics & EdTech' },
+            { name: 'Qelica',            tier: 'associate partner',  category: 'Technology' },
+            { name: 'HypedIN',           tier: 'associate partner',  category: 'Social Commerce' },
+          ],
+
+          // ── 2023 — verified ──
+          2023: [
+            { name: 'Central Bank of India', tier: 'title partner',    category: 'Banking' },
+            { name: 'Coding Ninjas',         tier: 'gold sponsor',     category: 'EdTech' },
+            { name: 'Manforce',              tier: 'gold sponsor',     category: 'Personal Care & FMCG' },
+            { name: "Gold's Gym",            tier: 'gold sponsor',     category: 'Fitness & Gym' },
+            { name: 'Paytm',                 tier: 'silver sponsor',   category: 'Fintech' },
+            { name: 'Instax',                tier: 'silver sponsor',   category: 'Photography' },
+            { name: 'Philips',               tier: 'silver sponsor',   category: 'Consumer Electronics' },
+            { name: 'Beardo',                tier: 'silver sponsor',   category: "Men's Grooming" },
+            { name: 'Clovia',                tier: 'silver sponsor',   category: 'Lingerie & Apparel' },
+            { name: 'Freedo',                tier: 'bronze sponsor',   category: 'EV Rentals' },
+            { name: 'Red Bull',              tier: 'associate partner', category: 'Energy Drinks' },
+            { name: 'Algocs',                 tier: 'associate partner', category: 'Algo Trading' },
+          ],
+        },
       },
-    }],
-    sports: [{
-      id: 'nsut_sports', name: 'Nexus Sports Meet', tagline: "NSUT's inter-college sports tournament",
-      icon: '🏆', iconBg: 'rgba(255,183,77,0.12)', footfall: '5,000+', sponsors_count: 8,
+      {
+        id: 'resonanz', name: 'Resonanz', tagline: "NSUT's annual intra-college cultural festival",
+        icon: '🎶', iconBg: 'rgba(128,49,64,0.15)', footfall: '30,000+', sponsors_count: '40+',
+        years: {
+          2025: [
+            { name: 'Instax',         tier: 'silver sponsor',   category: 'Photography' },
+            { name: 'Plum Body Lovin',tier: 'silver sponsor',   category: 'Beauty & Skincare' },
+            { name: 'Vision IAS',     tier: 'bronze sponsor',   category: 'UPSC Coaching' },
+          ],
+        },
+      },
+    ],
+  },
+
+  // ── SRCC ─────────────────────────────────────────────────────
+  srcc: {
+    cultural: [{
+      id: 'crossroads', name: 'Crossroads', tagline: "SRCC's iconic annual cultural festival",
+      icon: '🎭', iconBg: 'rgba(255,101,132,0.15)', footfall: '20,000+', sponsors_count: '50+',
       years: {
-        2024: [
-          { name: 'Decathlon', tier: 'title',  category: 'Sporting Goods' },
-          { name: 'Nike',      tier: 'gold',   category: 'Sportswear' },
-          { name: 'Gatorade',  tier: 'silver', category: 'Beverages' },
+
+        // ── 2025 — verified ──
+        2025: [
+          { name: 'PlayStation India', tier: 'title partner',     category: 'Gaming' },
+          { name: "McDonald's",        tier: 'gold sponsor',      category: 'QSR / Food' },
+          { name: 'Croma',             tier: 'gold sponsor',      category: 'Electronics Retail' },
+          { name: 'Sparx',             tier: 'silver sponsor',    category: 'Footwear' },
+          { name: 'Lotus Botanicals',  tier: 'silver sponsor',    category: 'Beauty & Skincare' },
+          { name: 'Bellavita',         tier: 'silver sponsor',    category: 'Perfumes & Fragrances' },
+          { name: 'Plum Body Lovin',   tier: 'silver sponsor',    category: 'Beauty & Skincare' },
+          { name: 'Nescafe',           tier: 'silver sponsor',    category: 'Beverages' },
+          { name: 'KitKat',            tier: 'silver sponsor',    category: 'Confectionery' },
+          { name: 'Bingo',             tier: 'silver sponsor',    category: 'Snacks' },
+          { name: 'NIC Ice Cream',     tier: 'silver sponsor',    category: 'Ice Cream' },
+          { name: 'Rapido',            tier: 'silver sponsor',    category: 'Bike Taxi & Mobility' },
+          { name: 'Portronics',        tier: 'silver sponsor',    category: 'Tech Accessories' },
+          { name: 'Unstop',            tier: 'bronze sponsor',    category: 'Career & Competitions' },
+          { name: 'Collegify',         tier: 'partner',           category: 'College Admissions' },
+          { name: 'Sand Martin',       tier: 'partner',           category: 'Hospitality' },
+          { name: 'Papa Nata',         tier: 'partner',           category: 'Food & Beverages' },
         ],
-        2023: [
-          { name: 'Adidas',    tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
+
+        // ── 2024 — verified ──
+        2024: [
+          { name: 'HONOR Smartphones', tier: 'title partner',    category: 'Smartphones' },
+          { name: 'Honda',             tier: 'gold sponsor',     category: 'Automobile' },
+          { name: 'ASUS',              tier: 'gold sponsor',     category: 'Consumer Electronics' },
+          { name: 'ICICI Direct',      tier: 'gold sponsor',     category: 'Stock Broking' },
+          { name: 'Pizza Hut',         tier: 'gold sponsor',     category: 'QSR / Food' },
+          { name: 'Nestle',            tier: 'silver sponsor',   category: 'FMCG' },
+          { name: 'Uniqlo',            tier: 'silver sponsor',   category: 'Fashion Retail' },
+          { name: 'MyGlamm',           tier: 'silver sponsor',   category: 'Beauty & Cosmetics' },
+          { name: 'Lotus Herbals',     tier: 'silver sponsor',   category: 'Beauty & Skincare' },
+          { name: 'Monster Energy',    tier: 'silver sponsor',   category: 'Energy Drinks' },
+          { name: 'Instax',            tier: 'silver sponsor',   category: 'Photography' },
+          { name: 'Sparx',             tier: 'silver sponsor',   category: 'Footwear' },
+          { name: 'JioSaavn',          tier: 'silver sponsor',   category: 'Music Streaming' },
+          { name: 'Internshala',       tier: 'bronze sponsor',   category: 'Internship Platform' },
+          { name: 'Amar Ujala',        tier: 'media partner',    category: 'Print Media' },
+          { name: 'Ishq FM',           tier: 'radio partner',    category: 'Radio' },
         ],
       },
     }],
@@ -390,66 +363,13 @@ const FEST_DATA = {
   iitd: {
     cultural: [{
       id: 'rendezvous', name: 'Rendezvous', tagline: "IIT Delhi's flagship cultural festival",
-      icon: '🎭', iconBg: 'rgba(67,232,192,0.15)', footfall: '60,000+', sponsors_count: 35,
-      years: {
-        2024: [
-          { name: 'HDFC Bank',   tier: 'title',     category: 'Banking' },
-          { name: 'Coca-Cola',   tier: 'gold',      category: 'Beverages' },
-          { name: 'Myntra',      tier: 'gold',      category: 'Fashion E-commerce' },
-          { name: 'boAt',        tier: 'silver',    category: 'Consumer Electronics' },
-          { name: 'Swiggy',      tier: 'silver',    category: 'Food Delivery' },
-          { name: 'Spotify',     tier: 'partner',   category: 'Music Streaming' },
-          { name: 'Razorpay',    tier: 'associate', category: 'Fintech' },
-          { name: 'Fastrack',    tier: 'bronze',    category: 'Fashion' },
-        ],
-        2023: [
-          { name: 'Jio',         tier: 'title',     category: 'Telecom' },
-          { name: 'Amazon',      tier: 'gold',      category: 'E-commerce' },
-          { name: 'Nykaa',       tier: 'gold',      category: 'Beauty' },
-          { name: 'Dream11',     tier: 'silver',    category: 'Fantasy Sports' },
-          { name: 'Ola',         tier: 'silver',    category: 'Mobility' },
-          { name: 'PhonePe',     tier: 'partner',   category: 'Fintech' },
-        ],
-        2022: [
-          { name: 'Airtel',      tier: 'title',     category: 'Telecom' },
-          { name: 'Flipkart',    tier: 'gold',      category: 'E-commerce' },
-          { name: 'Puma',        tier: 'silver',    category: 'Sportswear' },
-          { name: 'Cred',        tier: 'partner',   category: 'Fintech' },
-        ],
-      },
+      icon: '🎭', iconBg: 'rgba(67,232,192,0.15)', footfall: '60,000+', sponsors_count: '—',
+      years: {},
     }],
     tech: [{
       id: 'tryst_iitd', name: 'Tryst', tagline: "IIT Delhi's premier technical festival",
-      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '30,000+', sponsors_count: 25,
-      years: {
-        2024: [
-          { name: 'Google',       tier: 'title',     category: 'Technology' },
-          { name: 'Microsoft',    tier: 'gold',      category: 'Technology' },
-          { name: 'Adobe',        tier: 'gold',      category: 'Software' },
-          { name: 'Goldman Sachs',tier: 'silver',    category: 'Finance' },
-          { name: 'GitHub',       tier: 'partner',   category: 'Dev Tools' },
-        ],
-        2023: [
-          { name: 'Amazon',       tier: 'title',     category: 'Technology' },
-          { name: 'Flipkart',     tier: 'gold',      category: 'E-commerce' },
-          { name: 'Atlassian',    tier: 'silver',    category: 'Dev Tools' },
-        ],
-      },
-    }],
-    sports: [{
-      id: 'iitd_sports', name: 'Sportech', tagline: "IIT Delhi's annual sports extravaganza",
-      icon: '🏆', iconBg: 'rgba(255,183,77,0.12)', footfall: '10,000+', sponsors_count: 12,
-      years: {
-        2024: [
-          { name: 'Decathlon', tier: 'title',  category: 'Sporting Goods' },
-          { name: 'Puma',      tier: 'gold',   category: 'Sportswear' },
-          { name: 'Gatorade',  tier: 'silver', category: 'Beverages' },
-        ],
-        2023: [
-          { name: 'Adidas',    tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
-        ],
-      },
+      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '30,000+', sponsors_count: '—',
+      years: {},
     }],
   },
 
@@ -457,141 +377,13 @@ const FEST_DATA = {
   iiitd: {
     cultural: [{
       id: 'odyssey', name: 'Odyssey', tagline: "IIIT Delhi's growing cultural extravaganza",
-      icon: '🎭', iconBg: 'rgba(255,183,77,0.15)', footfall: '15,000+', sponsors_count: 16,
-      years: {
-        2024: [
-          { name: 'Airtel',   tier: 'title',     category: 'Telecom' },
-          { name: 'Zomato',   tier: 'gold',      category: 'Food Delivery' },
-          { name: 'boAt',     tier: 'gold',      category: 'Consumer Electronics' },
-          { name: 'Swiggy',   tier: 'silver',    category: 'Food Delivery' },
-          { name: 'Cred',     tier: 'partner',   category: 'Fintech' },
-          { name: 'Spotify',  tier: 'associate', category: 'Music Streaming' },
-        ],
-        2023: [
-          { name: 'Pepsi',    tier: 'title',     category: 'Beverages' },
-          { name: 'Myntra',   tier: 'gold',      category: 'Fashion E-commerce' },
-          { name: 'PhonePe',  tier: 'silver',    category: 'Fintech' },
-        ],
-      },
+      icon: '🎭', iconBg: 'rgba(255,183,77,0.15)', footfall: '15,000+', sponsors_count: '—',
+      years: {},
     }],
     tech: [{
       id: 'esya', name: 'Esya', tagline: "IIIT Delhi's flagship technical festival",
-      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '10,000+', sponsors_count: 14,
-      years: {
-        2024: [
-          { name: 'Microsoft', tier: 'title',     category: 'Technology' },
-          { name: 'Google',    tier: 'gold',      category: 'Technology' },
-          { name: 'Razorpay',  tier: 'silver',    category: 'Fintech' },
-          { name: 'GitHub',    tier: 'partner',   category: 'Dev Tools' },
-        ],
-        2023: [
-          { name: 'Amazon',   tier: 'title',  category: 'Technology' },
-          { name: 'IBM',      tier: 'gold',   category: 'IT Services' },
-        ],
-      },
-    }],
-  },
-
-  // ── SRCC ─────────────────────────────────────────────────────
-  srcc: {
-    cultural: [{
-      id: 'crossroads', name: 'Crossroads', tagline: "SRCC's iconic annual cultural festival",
-      icon: '🎭', iconBg: 'rgba(255,101,132,0.15)', footfall: '20,000+', sponsors_count: '50+',
-      years: {
-        // ── 2025 — real data ──
-        2025: [
-          { name: 'PlayStation India',   tier: 'title',     category: 'Gaming' },
-          { name: 'McDonald\'s',         tier: 'gold',      category: 'QSR / Food' },
-          { name: 'Croma',               tier: 'gold',      category: 'Electronics Retail' },
-          { name: 'PS5',                 tier: 'gold',      category: 'Gaming Console' },
-          { name: 'Sparx',               tier: 'silver',    category: 'Footwear' },
-          { name: 'Lotus Botanicals',    tier: 'silver',    category: 'Beauty & Skincare' },
-          { name: 'Bellavita',           tier: 'silver',    category: 'Perfumes & Fragrances' },
-          { name: 'Plum Body Lovin',     tier: 'silver',    category: 'Beauty & Skincare' },
-          { name: 'Nescafe',             tier: 'silver',    category: 'Beverages' },
-          { name: 'KitKat',              tier: 'silver',    category: 'Confectionery' },
-          { name: 'Bingo',               tier: 'silver',    category: 'Snacks' },
-          { name: 'NIC Ice Cream',       tier: 'silver',    category: 'Ice Cream' },
-          { name: 'Rapido',              tier: 'silver',    category: 'Bike Taxi & Mobility' },
-          { name: 'Portronics',          tier: 'silver',    category: 'Tech Accessories' },
-          { name: 'Unstop',              tier: 'bronze',    category: 'Career & Competitions' },
-          { name: 'Zenonik',             tier: 'bronze',    category: 'Technology' },
-          { name: 'Pulse',               tier: 'bronze',    category: 'Confectionery' },
-          { name: 'Orbit Wallet',        tier: 'bronze',    category: 'Fintech' },
-          { name: 'PETA India',          tier: 'bronze',    category: 'NGO / Animal Rights' },
-          { name: 'Herody',              tier: 'bronze',    category: 'Electric Vehicles' },
-          { name: 'Collegify',           tier: 'partner',   category: 'College Admissions' },
-          { name: 'Safar',               tier: 'partner',   category: 'Travel' },
-          { name: 'Sand Martin',         tier: 'partner',   category: 'Hospitality' },
-          { name: 'My Cool Canvas',      tier: 'partner',   category: 'Art & Lifestyle' },
-          { name: 'Papa Nata',           tier: 'partner',   category: 'Food & Beverages' },
-          { name: 'Piyaau',              tier: 'associate', category: 'Sustainable Products' },
-          { name: 'Leviore',             tier: 'associate', category: 'Fashion' },
-          { name: 'Bottoms',             tier: 'associate', category: 'Fashion' },
-          { name: 'HypedIN',             tier: 'associate', category: 'Social Commerce' },
-          { name: 'JSV',                 tier: 'associate', category: 'Technology' },
-          { name: 'Mehta Jewels',        tier: 'associate', category: 'Jewellery' },
-        ],
-        // ── 2024 — real data ──
-        2024: [
-          { name: 'HONOR Smartphones',   tier: 'title',     category: 'Smartphones' },
-          { name: 'Honda',               tier: 'gold',      category: 'Automobile' },
-          { name: 'ASUS',                tier: 'gold',      category: 'Consumer Electronics' },
-          { name: 'ICICI Direct',        tier: 'gold',      category: 'Stock Broking' },
-          { name: 'Pizza Hut',           tier: 'gold',      category: 'QSR / Food' },
-          { name: 'Nestle',              tier: 'silver',    category: 'FMCG' },
-          { name: 'Uniqlo',              tier: 'silver',    category: 'Fashion Retail' },
-          { name: 'MyGlamm',             tier: 'silver',    category: 'Beauty & Cosmetics' },
-          { name: 'Lotus Herbals',       tier: 'silver',    category: 'Beauty & Skincare' },
-          { name: 'Monster Energy',      tier: 'silver',    category: 'Energy Drinks' },
-          { name: 'Instax',              tier: 'silver',    category: 'Photography' },
-          { name: 'Sparx',               tier: 'silver',    category: 'Footwear' },
-          { name: 'Bigmuscles Nutrition',tier: 'silver',    category: 'Sports Nutrition' },
-          { name: 'JioSaavn',            tier: 'silver',    category: 'Music Streaming' },
-          { name: 'Ocean',               tier: 'silver',    category: 'Beverages' },
-          { name: 'Internshala',         tier: 'bronze',    category: 'Internship Platform' },
-          { name: 'Business Standard',   tier: 'bronze',    category: 'Print Media' },
-          { name: 'Amar Ujala',          tier: 'bronze',    category: 'Print Media' },
-          { name: 'NDTV',                tier: 'bronze',    category: 'News Media' },
-          { name: 'The Statesman',       tier: 'bronze',    category: 'Print Media' },
-          { name: 'Silicon India',       tier: 'bronze',    category: 'Tech Media' },
-          { name: 'Ishq FM',             tier: 'partner',   category: 'Radio' },
-          { name: 'Aspirant Learning',   tier: 'partner',   category: 'EdTech' },
-          { name: 'Drink Free',          tier: 'partner',   category: 'Beverages' },
-          { name: 'Taali',               tier: 'partner',   category: 'OTT Platform' },
-          { name: 'Orion Hostels',       tier: 'partner',   category: 'Hospitality' },
-          { name: 'KES',                 tier: 'associate', category: 'Education' },
-          { name: 'Music Verse Entertainment', tier: 'associate', category: 'Music & Entertainment' },
-          { name: 'Maltiplai',           tier: 'associate', category: 'Fintech' },
-          { name: 'Nexus Gaming',        tier: 'associate', category: 'Gaming' },
-          { name: 'Interview Buddy',     tier: 'associate', category: 'Career & Interview Prep' },
-          { name: 'Digitalpreneur',      tier: 'associate', category: 'Digital Marketing' },
-          { name: 'Beanut Butter',       tier: 'associate', category: 'Health Food' },
-          { name: 'ICSI',                tier: 'associate', category: 'Education' },
-        ],
-        2022: [
-          { name: 'Mercedes', tier: 'title',  category: 'Automobile' },
-          { name: 'Pepsi',    tier: 'gold',   category: 'Beverages' },
-          { name: 'Nykaa',    tier: 'silver', category: 'Beauty' },
-          { name: 'Cred',     tier: 'partner',category: 'Fintech' },
-        ],
-      },
-    }],
-    other: [{
-      id: 'interface', name: 'Interface', tagline: "SRCC's commerce & entrepreneurship conclave",
-      icon: '💼', iconBg: 'rgba(255,183,77,0.12)', footfall: '5,000+', sponsors_count: 12,
-      years: {
-        2024: [
-          { name: 'Deloitte',     tier: 'title',  category: 'Consulting' },
-          { name: 'EY',           tier: 'gold',   category: 'Consulting' },
-          { name: 'KPMG',         tier: 'silver', category: 'Consulting' },
-          { name: 'Razorpay',     tier: 'partner',category: 'Fintech' },
-        ],
-        2023: [
-          { name: 'PwC',          tier: 'title',  category: 'Consulting' },
-          { name: 'Goldman Sachs',tier: 'gold',   category: 'Finance' },
-        ],
-      },
+      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '10,000+', sponsors_count: '—',
+      years: {},
     }],
   },
 
@@ -599,36 +391,8 @@ const FEST_DATA = {
   stephens: {
     cultural: [{
       id: 'stephania', name: 'Stephania', tagline: "St. Stephen's prestigious annual cultural festival",
-      icon: '🎭', iconBg: 'rgba(100,220,100,0.15)', footfall: '10,000+', sponsors_count: 14,
-      years: {
-        2024: [
-          { name: 'Pepsi',    tier: 'title',     category: 'Beverages' },
-          { name: 'HDFC Bank',tier: 'gold',      category: 'Banking' },
-          { name: 'Myntra',   tier: 'silver',    category: 'Fashion E-commerce' },
-          { name: 'Spotify',  tier: 'partner',   category: 'Music Streaming' },
-          { name: 'Cred',     tier: 'associate', category: 'Fintech' },
-        ],
-        2023: [
-          { name: 'Coca-Cola',tier: 'title',     category: 'Beverages' },
-          { name: 'Flipkart', tier: 'gold',      category: 'E-commerce' },
-          { name: 'boAt',     tier: 'silver',    category: 'Consumer Electronics' },
-        ],
-      },
-    }],
-    sports: [{
-      id: 'stephens_sports', name: 'Stephanians Cup', tagline: "St. Stephen's inter-college sports meet",
-      icon: '🏆', iconBg: 'rgba(255,183,77,0.12)', footfall: '3,000+', sponsors_count: 6,
-      years: {
-        2024: [
-          { name: 'Nike',      tier: 'title',  category: 'Sportswear' },
-          { name: 'Gatorade',  tier: 'gold',   category: 'Beverages' },
-          { name: 'Decathlon', tier: 'silver', category: 'Sporting Goods' },
-        ],
-        2023: [
-          { name: 'Puma',      tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
-        ],
-      },
+      icon: '🎭', iconBg: 'rgba(100,220,100,0.15)', footfall: '10,000+', sponsors_count: '—',
+      years: {},
     }],
   },
 
@@ -636,64 +400,13 @@ const FEST_DATA = {
   iitb: {
     cultural: [{
       id: 'moodindigo', name: 'Mood Indigo', tagline: "Asia's largest college cultural festival",
-      icon: '🎭', iconBg: 'rgba(67,232,192,0.15)', footfall: '1,50,000+', sponsors_count: '50+',
-      years: {
-        2024: [
-          { name: 'Jio',        tier: 'title',     category: 'Telecom' },
-          { name: 'Coca-Cola',  tier: 'gold',      category: 'Beverages' },
-          { name: 'Amazon',     tier: 'gold',      category: 'E-commerce' },
-          { name: 'Myntra',     tier: 'silver',    category: 'Fashion E-commerce' },
-          { name: 'boAt',       tier: 'silver',    category: 'Consumer Electronics' },
-          { name: 'Swiggy',     tier: 'partner',   category: 'Food Delivery' },
-          { name: 'Spotify',    tier: 'partner',   category: 'Music Streaming' },
-          { name: 'Razorpay',   tier: 'associate', category: 'Fintech' },
-        ],
-        2023: [
-          { name: 'Airtel',     tier: 'title',     category: 'Telecom' },
-          { name: 'Flipkart',   tier: 'gold',      category: 'E-commerce' },
-          { name: 'Pepsi',      tier: 'gold',      category: 'Beverages' },
-          { name: 'Dream11',    tier: 'silver',    category: 'Fantasy Sports' },
-          { name: 'HDFC Bank',  tier: 'silver',    category: 'Banking' },
-        ],
-        2022: [
-          { name: 'HDFC Bank',  tier: 'title',     category: 'Banking' },
-          { name: 'Coca-Cola',  tier: 'gold',      category: 'Beverages' },
-          { name: 'Ola',        tier: 'silver',    category: 'Mobility' },
-        ],
-      },
+      icon: '🎭', iconBg: 'rgba(67,232,192,0.15)', footfall: '1,50,000+', sponsors_count: '—',
+      years: {},
     }],
     tech: [{
       id: 'techfest', name: 'Techfest', tagline: "Asia's largest science & technology festival",
-      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '1,80,000+', sponsors_count: '30',
-      years: {
-        2024: [
-          { name: 'Google',       tier: 'title',     category: 'Technology' },
-          { name: 'Microsoft',    tier: 'gold',      category: 'Technology' },
-          { name: 'Samsung',      tier: 'gold',      category: 'Electronics' },
-          { name: 'Goldman Sachs',tier: 'silver',    category: 'Finance' },
-          { name: 'Adobe',        tier: 'silver',    category: 'Software' },
-        ],
-        2023: [
-          { name: 'Amazon',     tier: 'title',  category: 'Technology' },
-          { name: 'Qualcomm',   tier: 'gold',   category: 'Semiconductors' },
-          { name: 'Flipkart',   tier: 'silver', category: 'E-commerce' },
-        ],
-      },
-    }],
-    sports: [{
-      id: 'iitb_sports', name: 'Inter IIT Sports Meet', tagline: 'Premier sports competition among IITs',
-      icon: '🏆', iconBg: 'rgba(255,183,77,0.12)', footfall: '15,000+', sponsors_count: 15,
-      years: {
-        2024: [
-          { name: 'Decathlon', tier: 'title',  category: 'Sporting Goods' },
-          { name: 'Puma',      tier: 'gold',   category: 'Sportswear' },
-          { name: 'Gatorade',  tier: 'silver', category: 'Beverages' },
-        ],
-        2023: [
-          { name: 'Adidas',    tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
-        ],
-      },
+      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '1,80,000+', sponsors_count: '—',
+      years: {},
     }],
   },
 
@@ -701,61 +414,13 @@ const FEST_DATA = {
   iitk: {
     cultural: [{
       id: 'antaragni', name: 'Antaragni', tagline: "IIT Kanpur's iconic cultural festival since 1965",
-      icon: '🎭', iconBg: 'rgba(67,232,192,0.15)', footfall: '80,000+', sponsors_count: 35,
-      years: {
-        2024: [
-          { name: 'Pepsi',      tier: 'title',     category: 'Beverages' },
-          { name: 'Jio',        tier: 'gold',      category: 'Telecom' },
-          { name: 'Amazon',     tier: 'gold',      category: 'E-commerce' },
-          { name: 'boAt',       tier: 'silver',    category: 'Consumer Electronics' },
-          { name: 'Swiggy',     tier: 'silver',    category: 'Food Delivery' },
-          { name: 'PhonePe',    tier: 'partner',   category: 'Fintech' },
-          { name: 'Spotify',    tier: 'associate', category: 'Music Streaming' },
-        ],
-        2023: [
-          { name: 'Airtel',     tier: 'title',     category: 'Telecom' },
-          { name: 'Coca-Cola',  tier: 'gold',      category: 'Beverages' },
-          { name: 'Flipkart',   tier: 'gold',      category: 'E-commerce' },
-          { name: 'Ola',        tier: 'silver',    category: 'Mobility' },
-        ],
-        2022: [
-          { name: 'Dream11',    tier: 'title',     category: 'Fantasy Sports' },
-          { name: 'HDFC Bank',  tier: 'gold',      category: 'Banking' },
-          { name: 'Myntra',     tier: 'silver',    category: 'Fashion E-commerce' },
-        ],
-      },
+      icon: '🎭', iconBg: 'rgba(67,232,192,0.15)', footfall: '80,000+', sponsors_count: '—',
+      years: {},
     }],
     tech: [{
       id: 'techkriti', name: 'Techkriti', tagline: "IIT Kanpur's annual technical & entrepreneurship festival",
-      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '40,000+', sponsors_count: 28,
-      years: {
-        2024: [
-          { name: 'Google',       tier: 'title',     category: 'Technology' },
-          { name: 'Microsoft',    tier: 'gold',      category: 'Technology' },
-          { name: 'Qualcomm',     tier: 'gold',      category: 'Semiconductors' },
-          { name: 'Goldman Sachs',tier: 'silver',    category: 'Finance' },
-        ],
-        2023: [
-          { name: 'Amazon',   tier: 'title',  category: 'Technology' },
-          { name: 'Adobe',    tier: 'gold',   category: 'Software' },
-          { name: 'Razorpay', tier: 'silver', category: 'Fintech' },
-        ],
-      },
-    }],
-    sports: [{
-      id: 'udghosh', name: 'Udghosh', tagline: "IIT Kanpur's national level sports meet",
-      icon: '🏆', iconBg: 'rgba(255,183,77,0.12)', footfall: '12,000+', sponsors_count: 12,
-      years: {
-        2024: [
-          { name: 'Decathlon', tier: 'title',  category: 'Sporting Goods' },
-          { name: 'Nike',      tier: 'gold',   category: 'Sportswear' },
-          { name: 'Gatorade',  tier: 'silver', category: 'Beverages' },
-        ],
-        2023: [
-          { name: 'Adidas',    tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
-        ],
-      },
+      icon: '⚙️', iconBg: 'rgba(67,232,192,0.12)', footfall: '40,000+', sponsors_count: '—',
+      years: {},
     }],
   },
 
@@ -763,42 +428,8 @@ const FEST_DATA = {
   lsr: {
     cultural: [{
       id: 'tarang', name: 'Tarang', tagline: "LSR's celebrated annual cultural festival",
-      icon: '🎭', iconBg: 'rgba(255,101,132,0.15)', footfall: '12,000+', sponsors_count: 16,
-      years: {
-        2024: [
-          { name: 'Nykaa',      tier: 'title',     category: 'Beauty' },
-          { name: 'Myntra',     tier: 'gold',      category: 'Fashion E-commerce' },
-          { name: 'Spotify',    tier: 'gold',      category: 'Music Streaming' },
-          { name: 'Zomato',     tier: 'silver',    category: 'Food Delivery' },
-          { name: 'Bewakoof',   tier: 'silver',    category: 'Fashion' },
-          { name: 'Mamaearth',  tier: 'associate', category: 'Beauty & Personal Care' },
-        ],
-        2023: [
-          { name: 'Nykaa',      tier: 'title',     category: 'Beauty' },
-          { name: 'Flipkart',   tier: 'gold',      category: 'E-commerce' },
-          { name: 'boAt',       tier: 'silver',    category: 'Consumer Electronics' },
-        ],
-        2022: [
-          { name: 'Myntra',     tier: 'title',     category: 'Fashion E-commerce' },
-          { name: 'Amazon',     tier: 'gold',      category: 'E-commerce' },
-          { name: 'Pepsi',      tier: 'silver',    category: 'Beverages' },
-        ],
-      },
-    }],
-    sports: [{
-      id: 'lsr_sports', name: 'LSR Sports Week', tagline: "LSR's annual inter-college sports tournament",
-      icon: '🏆', iconBg: 'rgba(255,183,77,0.12)', footfall: '3,500+', sponsors_count: 6,
-      years: {
-        2024: [
-          { name: 'Nike',      tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
-          { name: 'Gatorade',  tier: 'silver', category: 'Beverages' },
-        ],
-        2023: [
-          { name: 'Puma',      tier: 'title',  category: 'Sportswear' },
-          { name: 'Decathlon', tier: 'gold',   category: 'Sporting Goods' },
-        ],
-      },
+      icon: '🎭', iconBg: 'rgba(255,101,132,0.15)', footfall: '12,000+', sponsors_count: '—',
+      years: {},
     }],
   },
 }
@@ -1431,20 +1062,127 @@ function getLinkedInUrl(companyName) {
   return `https://www.linkedin.com/search/results/people/?keywords=${q}`
 }
 
+// ============================================================
+//  COMPANY LOGO MAP — Google favicon service (free, no API key needed)
+// ============================================================
+
+const COMPANY_DOMAINS = {
+  'adda52.com':             'adda52.com',
+  'Instax':                 'instax.com',
+  'TOO YUMM!':              'tooyumm.com',
+  'Too Yumm':               'tooyumm.com',
+  'Amar Ujala':             'amarujala.com',
+  'RED FM 93.5':            'redmfm.in',
+  'Red FM 93.5':            'redmfm.in',
+  'Chess.com':              'chess.com',
+  'chess.com':              'chess.com',
+  'CODECHEF':               'codechef.com',
+  'CodeChef':               'codechef.com',
+  'TradingView':            'tradingview.com',
+  'Beardo':                 'beardo.com',
+  'Bank Of Baroda':         'bankofbaroda.in',
+  'H2O.ai':                 'h2o.ai',
+  'MOTILAL OSWAL':          'motilaloswal.com',
+  'ROYAL ENFIELD':          'royalenfield.com',
+  'Unstop':                 'unstop.com',
+  'Coding Ninjas':          'codingninjas.com',
+  'StockGro':               'stockgro.com',
+  'GeeksforGeeks':          'geeksforgeeks.org',
+  'EaseMyTrip':             'easemytrip.com',
+  'Adobe':                  'adobe.com',
+  'Revolt':                 'revoltmotors.com',
+  'Clovia':                 'clovia.com',
+  'MTV':                    'mtv.com',
+  'VIACOM 18':              'viacom18.com',
+  'Paree':                  'pareehygiene.com',
+  'Philips India':          'philips.com',
+  'Philips':                'philips.com',
+  'OnePlus':                'oneplus.com',
+  'Nestle':                 'nestle.in',
+  'Nescafe':                'nescafe.com',
+  'Sparx':                  'sparxshoes.com',
+  'MuscleBlaze':            'muscleblaze.com',
+  'Plum':                   'plumgoodness.com',
+  'Plum Body Lovin':        'plumgoodness.com',
+  'JioSaavn':               'jiosaavn.com',
+  'WinZo':                  'winzogames.com',
+  'Delhi Capitals':         'delhicapitals.com',
+  'Castrol':                'castrol.com',
+  'blogadda.com':           'blogadda.com',
+  'Groupme':                'groupme.com',
+  'Rapido':                 'rapido.bike',
+  'Eazydiner':              'eazydiner.com',
+  'Internshala':            'internshala.com',
+  'Freedo':                 'freedo.bike',
+  'Myntra':                 'myntra.com',
+  'Boult Audio':            'boultaudio.com',
+  'Vision IAS':             'visionias.in',
+  'Next IAS':               'nextias.com',
+  'Honda':                  'honda2wheelersindia.com',
+  'Hero':                   'heromotocorp.com',
+  'GAIL':                   'gailonline.com',
+  'Bharat Petroleum':       'bharatpetroleum.com',
+  'HDFC Bank':              'hdfcbank.com',
+  'JK Cement':              'jkcement.com',
+  'ASUS':                   'asus.com',
+  'HONOR Smartphones':      'hihonor.com',
+  'Uniqlo':                 'uniqlo.com',
+  'Portronics':             'portronics.com',
+  'Gigabyte':               'gigabyte.com',
+  'Qualcomm':               'qualcomm.com',
+  'amdocs':                 'amdocs.com',
+  'All India Radio':        'allindiaradio.gov.in',
+  'PNB':                    'pnbindia.in',
+  'Central Bank of India':  'centralbankofindia.co.in',
+  'PlayStation India':      'playstation.com',
+  'Croma':                  'croma.com',
+  'Pizza Hut':              'pizzahut.co.in',
+  'Bingo':                  'itcportal.com',
+  'Snitch':                 'snitch.co.in',
+  'boAt':                   'boat-lifestyle.com',
+  'Swiggy':                 'swiggy.com',
+  'Zomato':                 'zomato.com',
+  'Razorpay':               'razorpay.com',
+  'GitHub':                 'github.com',
+}
+
+function getLogoUrl(name) {
+  const domain = COMPANY_DOMAINS[name]
+  if (!domain) return null
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`
+}
+
+function getTierClass(tier) {
+  const t = (tier || '').toLowerCase()
+  if (t.startsWith('title') || t.includes('co-title')) return 'tier-title'
+  if (t.includes('gold'))   return 'tier-gold'
+  if (t.includes('silver')) return 'tier-silver'
+  if (t.includes('bronze')) return 'tier-bronze'
+  return 'tier-partner'
+}
+
 function renderSponsors(sponsors) {
   if (!sponsors || !sponsors.length) {
-    return `<p style="color:var(--muted);font-size:13px;padding:10px 0">No sponsors listed.</p>`
+    return `<div class="sponsors-empty">📋 Sponsor data is being verified — check back soon or <a href="#" onclick="openListFest();return false;" style="color:var(--accent)">submit data</a>.</div>`
   }
   return sponsors.map(s => {
+    const logoUrl     = getLogoUrl(s.name)
     const linkedinUrl = getLinkedInUrl(s.name)
-    const skipLinkedIn = ['Google','Microsoft','Amazon','Apple','Meta','Samsung','Intel','IBM','Qualcomm','Goldman Sachs','Deloitte','EY','KPMG','PwC','Jio','Reliance Jio','Pepsi','Coca-Cola','Nestle','Nike','Adidas','Puma','HDFC Bank','ICICI Bank','Audi','BMW','Mercedes','Honda','Hero','Gatorade'].includes(s.name)
+    const skipLinkedIn = ['Google','Microsoft','Amazon','Apple','Meta','Samsung','Intel','IBM','Qualcomm','Goldman Sachs','Jio','Pepsi','Coca-Cola','Nestle','Nike','Adidas','Puma','HDFC Bank','Honda','Hero','Gatorade'].includes(s.name)
+    const safeName    = s.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'")
     return `
       <div class="sponsor-card">
-        <div class="sponsor-tier tier-${s.tier}">${s.tier}</div>
+        <div class="sponsor-card-top">
+          ${logoUrl
+            ? `<img class="sponsor-logo" src="${logoUrl}" alt="${s.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
+               <div class="sponsor-logo-fallback" style="display:none">${s.name.charAt(0).toUpperCase()}</div>`
+            : `<div class="sponsor-logo-fallback">${s.name.charAt(0).toUpperCase()}</div>`}
+          <div class="sponsor-tier ${getTierClass(s.tier)}">${s.tier}</div>
+        </div>
         <div class="sponsor-name">${s.name}</div>
         <div class="sponsor-card-footer">
           <div class="sponsor-category">${s.category}</div>
-          <button class="contacts-btn" onclick="openContactsPanel('${s.name.replace(/'/g,"\\'")}'); event.stopPropagation()">👤 Contacts</button>
+          <button class="contacts-btn" onclick="openContactsPanel('${safeName}'); event.stopPropagation()">👤 Contacts</button>
           ${!skipLinkedIn ? `
             <a class="linkedin-btn" href="${linkedinUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -1846,6 +1584,20 @@ function closeEmailModal() {
     }
     .linkedin-btn:hover { background:rgba(10,102,194,0.22); }
     .sponsor-card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:6px; gap:6px; flex-wrap:wrap; }
+    .sponsor-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px; }
+    .sponsor-logo {
+      width:28px; height:28px; object-fit:contain; border-radius:6px;
+      background:#1a1a24; padding:2px; flex-shrink:0;
+    }
+    .sponsor-logo-fallback {
+      width:28px; height:28px; border-radius:6px; background:rgba(108,99,255,0.15);
+      color:#a09aff; font-size:13px; font-weight:700;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .sponsors-empty {
+      padding:32px 0; text-align:center; color:var(--muted,#7c7b8a);
+      font-size:13px; line-height:1.8;
+    }
     .contacts-btn {
       display:inline-flex; align-items:center; gap:4px;
       background:rgba(255,183,77,0.1); color:#ffb74d;
